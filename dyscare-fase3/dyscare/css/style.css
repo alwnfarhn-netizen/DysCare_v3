@@ -1,0 +1,309 @@
+/* ==========================================================================
+   DYSCARE STYLESHEET
+   ========================================================================== */
+
+/* --- IMPORT FONT --- */
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+/* --- CORE STYLES --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    touch-action: manipulation;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Watermark UNESA Logo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Logo_Unesa.svg/1200px-Logo_Unesa.svg.png');
+    background-repeat: no-repeat;
+    background-position: center 100px;
+    background-size: 30%;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: '© 2025 A5ESA - M. Alwan Farhan';
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* --- ANIMATED BACKGROUND --- */
+#animated-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#animated-bg-container span {
+    position: absolute;
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.2;
+    animation: floatUp 15s linear infinite;
+    bottom: -100px;
+}
+
+#animated-bg-container span:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 4rem; }
+#animated-bg-container span:nth-child(2) { left: 20%; animation-delay: 2s; }
+#animated-bg-container span:nth-child(3) { left: 35%; animation-delay: 4s; font-size: 3.5rem; }
+#animated-bg-container span:nth-child(4) { left: 50%; animation-delay: 0s; }
+#animated-bg-container span:nth-child(5) { left: 65%; animation-delay: 6s; font-size: 4rem; }
+#animated-bg-container span:nth-child(6) { left: 80%; animation-delay: 3s; }
+#animated-bg-container span:nth-child(7) { left: 90%; animation-delay: 1s; font-size: 3.5rem; }
+#animated-bg-container span:nth-child(8) { left: 5%; animation-delay: 7s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.2; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- UI COMPONENTS --- */
+.card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+.card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.card-hover:active { transform: translateY(-2px); }
+
+.main-button { transition: transform 0.1s, background-color 0.2s; }
+.main-button:active { transform: scale(0.95); }
+
+.feedback-animation { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4E65C6;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- FEATURE SPECIFIC: SPELLING --- */
+.letter-tile {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.letter-tile:active {
+    transform: scale(0.9);
+    background-color: #e2e8f0;
+}
+
+.spelling-image-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f5f9;
+    margin: 0 auto 1rem auto;
+    overflow: hidden;
+}
+
+.spelling-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- FEATURE SPECIFIC: MATH --- */
+.math-visual {
+    border: 2px solid #cbd5e1;
+    background-color: #f8fafc;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 2.5rem;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* --- FEATURE SPECIFIC: WRITING CANVAS --- */
+#writing-canvas {
+    touch-action: none;
+    background-color: transparent;
+    cursor: crosshair;
+    position: relative;
+    z-index: 10;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 3px dashed #cbd5e1;
+    border-radius: 20px;
+    overflow: hidden;
+    background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 100% 50px;
+}
+
+.trace-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 250px;
+    color: transparent;
+    -webkit-text-stroke: 3px #cbd5e1;
+    pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    z-index: 0;
+}
+
+/* --- ACCESSIBILITY PANEL --- */
+#accessibility-panel::-webkit-scrollbar { width: 8px; }
+#accessibility-panel::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+#accessibility-panel::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+#accessibility-panel::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* --- DYSLEXIA FONT MODES --- */
+body.dyslexia-mode-opendyslexic,
+body.dyslexia-mode-opendyslexic * {
+    font-family: 'OpenDyslexic', sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.15em !important;
+    line-height: 1.8 !important;
+}
+
+body.dyslexia-mode-opendyslexic,
+body.dyslexia-mode-opendyslexic .bg-white,
+body.dyslexia-mode-opendyslexic .bg-brand-white,
+body.dyslexia-mode-opendyslexic .bg-gray-50 {
+    background-color: #FDF6E3 !important;
+}
+
+body.dyslexia-mode-opendyslexic,
+body.dyslexia-mode-opendyslexic .text-gray-800,
+body.dyslexia-mode-opendyslexic .text-gray-700,
+body.dyslexia-mode-opendyslexic .text-gray-600,
+body.dyslexia-mode-opendyslexic .text-gray-500,
+body.dyslexia-mode-opendyslexic .text-gray-400,
+body.dyslexia-mode-opendyslexic h1,
+body.dyslexia-mode-opendyslexic h2,
+body.dyslexia-mode-opendyslexic h3 {
+    color: #00479A !important;
+}
+
+/* Font Awesome exceptions */
+body[class*="dyslexia-mode"] .fa,
+body[class*="dyslexia-mode"] .fas,
+body[class*="dyslexia-mode"] .fa-solid,
+body[class*="dyslexia-mode"] .fa-regular,
+body[class*="dyslexia-mode"] .fa-brands {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
+body[class*="dyslexia-mode"] .trace-guide {
+    font-family: inherit !important;
+}
+
+/* --- UTILITIES --- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.highlight-word {
+    background-color: #fef08a;
+    border-radius: 4px;
+    padding: 0 2px;
+}
+
+/* --- LEVEL BADGES (NEW) --- */
+.level-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.level-badge-easy {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.level-badge-medium {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.level-badge-hard {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* --- PRE-ASSESSMENT --- */
+.assessment-option-btn {
+    min-height: 70px;
+    user-select: none;
+}
+
+.assessment-option-btn:active {
+    transform: scale(0.97);
+}
+
+.assessment-option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
