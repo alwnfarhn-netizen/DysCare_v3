@@ -5,39 +5,99 @@
 // ⚠️ Ganti dengan API Key Gemini Anda dari https://aistudio.google.com/apikey
 const API_KEY = "";
 
-// Endpoint API Gemini
-const TEXT_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
-const IMAGE_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${API_KEY}`;
+// Endpoint API Gemini (model: gemini-2.5-flash-preview-09-2025 dan imagen-4.0-generate-001)
+const TEXT_API_URL   = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+const IMAGE_API_URL  = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${API_KEY}`;
 const VISION_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
 
-// Konfigurasi Sistem Level (Adaptive Learning)
+/**
+ * Konfigurasi Sistem 6 Level Adaptif DYSCARE.
+ *
+ * Taksonomi 6 level berdasarkan Simple View of Reading (Gough & Tunmer, 1986)
+ * yang dijabarkan dalam Task Analysis Bab III proposal.
+ *
+ * Kriteria naik level: akurasi ≥80% pada 3 sesi latihan berturut-turut.
+ * Justifikasi: Cooper, Heron & Heward (2020) tentang mastery learning criterion
+ * dalam Applied Behavior Analysis.
+ */
 const LEVEL_CONFIG = {
-    // Ambang batas naik level berdasarkan TOTAL POIN (reading + spelling + math)
-    THRESHOLD_MEDIUM: 50,   // Total poin untuk naik ke level Sedang
-    THRESHOLD_HARD: 100,    // Total poin untuk naik ke level Sulit
+    TOTAL_LEVELS: 6,
 
-    // Label level
+    // Mastery criterion sesuai Task Analysis Bab III proposal
+    ACCURACY_THRESHOLD: 80,           // persen minimum per sesi (≥80%)
+    CONSECUTIVE_SESSIONS_REQUIRED: 3, // jumlah sesi berturut-turut yang harus lulus
+
+    // Jumlah latihan per sesi sebelum akurasi dihitung
+    EXERCISES_PER_SESSION: 5,
+
+    // Label dan metadata tiap level (Task Analysis Bab III, Tabel Level)
     LABELS: {
-        1: { name: 'Mudah',  emoji: '🌱', color: 'green',  hint: 'Kumpulkan 50 poin untuk naik ke Level Sedang' },
-        2: { name: 'Sedang', emoji: '🌟', color: 'yellow', hint: 'Kumpulkan 100 poin untuk naik ke Level Sulit' },
-        3: { name: 'Sulit',  emoji: '🏆', color: 'red',    hint: 'Kamu sudah di level tertinggi! Pertahankan.' }
+        1: {
+            name: 'Pengenalan Huruf',
+            subtitle: 'Identifikasi A-Z, bedakan b/d, p/q, m/w, u/n',
+            emoji: '🔤',
+            color: 'blue',
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 2'
+        },
+        2: {
+            name: 'Kesadaran Fonologis',
+            subtitle: 'Bunyi huruf, fonem awal, tengah, dan akhir',
+            emoji: '👂',
+            color: 'green',
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 3'
+        },
+        3: {
+            name: 'Blending Bunyi',
+            subtitle: 'Gabungkan bunyi: KV, KV-KV, KVK',
+            emoji: '🔊',
+            color: 'yellow',
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 4'
+        },
+        4: {
+            name: 'Pengenalan Kata',
+            subtitle: 'Baca kata bermakna KV-KV, KVK, sight words',
+            emoji: '📝',
+            color: 'orange',
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 5'
+        },
+        5: {
+            name: 'Kalimat Sederhana',
+            subtitle: 'Kalimat 3-4 kata, pemahaman literal',
+            emoji: '📖',
+            color: 'red',
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 6'
+        },
+        6: {
+            name: 'Kelancaran Membaca',
+            subtitle: 'Akurasi + intonasi + kecepatan, paragraf pendek',
+            emoji: '🏆',
+            color: 'purple',
+            hint: 'Level tertinggi! Pertahankan kelancaran membacamu.'
+        }
     }
 };
 
 // Storage Keys (konsisten di seluruh aplikasi)
 const STORAGE_KEYS = {
-    PROGRESS:   'dyscareProgress',
-    PROFILE:    'dyscareProfile',
-    LEVEL:      'dyscareLevel',
-    HISTORY:    'dyscareSessionHistory',
-    ASSESSMENT: 'dyscareAssessment'
+    PROGRESS:       'dyscareProgress',
+    PROFILE:        'dyscareProfile',
+    LEVEL:          'dyscareLevel',
+    HISTORY:        'dyscareSessionHistory',
+    ASSESSMENT:     'dyscareAssessment',
+    LEVEL_PROGRESS: 'dyscareLevelProgress'
 };
 
-// Konfigurasi Pre-Assessment
+/**
+ * Konfigurasi Pre-Assessment 12 soal diagnostik.
+ *
+ * Soal dibagi 2 per level (6 level × 2 soal = 12 soal total).
+ * Entry level ditentukan dari total skor dengan rentang per level.
+ * Soal hanya mencakup domain membaca dan mengeja (disleksia), sesuai scope
+ * penelitian yang fokus pada early reading skills (Bab I & III proposal).
+ */
 const ASSESSMENT_CONFIG = {
     TOTAL_QUESTIONS: 12,
-    QUESTIONS_PER_DOMAIN: 4,
-    // Threshold persentase untuk menentukan level entry
-    THRESHOLD_START_MEDIUM: 78,  // ≥ 78% → mulai Level 2
-    THRESHOLD_START_EASY:   44   // ≥ 44% → mulai Level 1 biasa, di bawahnya → Level 1 + pendampingan
+    QUESTIONS_PER_LEVEL: 2,
+    // Skor minimum untuk masuk ke masing-masing level (0-12)
+    ENTRY_THRESHOLDS: { 1: 0, 2: 2, 3: 4, 4: 6, 5: 8, 6: 10 }
 };

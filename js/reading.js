@@ -74,15 +74,20 @@ function setupReading() {
                 .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
             const cleanTranscript = transcript.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
 
-            if (cleanTranscript.includes(target) || target.includes(cleanTranscript)) {
+            const isCorrect = cleanTranscript.includes(target) || target.includes(cleanTranscript);
+
+            if (isCorrect) {
                 playSound('correct');
                 feedback.innerHTML = `<span class="text-green-500 feedback-animation"><i class="fa-solid fa-star"></i> Hebat! Benar.</span>`;
-                appState.progress.reading += 10;
+                appState.progress.reading++;
                 saveProgress();
             } else {
                 playSound('wrong');
                 feedback.innerHTML = `<span class="text-orange-500">Hampir! Kamu bilang: "${transcript}"</span>`;
             }
+
+            // Catat hasil untuk adaptive level progression (akurasi berbasis sesi)
+            recordExerciseResult(isCorrect);
         };
 
         recognition.onend = () => {

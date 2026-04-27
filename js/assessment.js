@@ -1,136 +1,178 @@
 /* ==========================================================================
    PRE-ASSESSMENT MODULE
    ==========================================================================
-   Skrining awal 12 soal (4 per domain) untuk menentukan level entry adaptif.
+   Skrining awal 12 soal untuk menentukan level entry adaptif (Level 1-6).
 
    Alur:
    1. User baru buka app → cek localStorage
    2. Belum ada riwayat skrining → tampilkan assessment-screen
-   3. User kerjakan 12 soal → sistem hitung skor per domain
+   3. User kerjakan 12 soal → sistem hitung skor per level-domain
    4. Tentukan level awal berdasarkan skor total
-   5. Simpan hasil → tampilkan ringkasan (untuk dewasa) → mulai belajar
+   5. Simpan hasil → tampilkan ringkasan → mulai belajar
 
-   Penjelasan untuk BAB III:
-   → "Diagnostic pre-assessment dengan 12 item yang mencakup tiga domain
-     kesulitan belajar spesifik (membaca/disleksia, mengeja/disgrafia,
-     berhitung/diskalkulia). Hasil skrining digunakan untuk menentukan
-     entry level adaptif sesuai profil kemampuan pengguna."
+   Desain soal:
+   - 12 soal, 2 soal per level (6 level × 2 = 12)
+   - Progresif sesuai Task Analysis Bab III: Pengenalan Huruf → Kelancaran
+   - Hanya mencakup domain membaca permulaan (disleksia), sesuai scope penelitian
+   - Domain berhitung (diskalkulia) tidak dimasukkan karena di luar scope Bab III
+
+   Referensi:
+   - Gough & Tunmer (1986): Simple View of Reading, dasar taksonomi 6 level
+   - Snowling, Hulme & Nation (2020): karakteristik disleksia perkembangan
    ========================================================================== */
 
-/* -------------------- BANK SOAL SKRINING -------------------- */
+/* -------------------- BANK SOAL SKRINING (12 soal, 2 per level) -------------------- */
 
 const ASSESSMENT_QUESTIONS = {
-    // ───── DOMAIN MEMBACA (4 soal) ─────
-    // Fokus: pengenalan kata + pemahaman sederhana
-    reading: [
+
+    // ───── LEVEL 1: Pengenalan Huruf (Letter Recognition) ─────
+    // Fokus: identifikasi huruf yang mudah tertukar oleh anak disleksia
+    // Referensi: Snowling, Hulme & Nation (2020) - letter reversal sebagai ciri khas disleksia
+    level1: [
         {
-            id: 'r1',
+            id: 'l1q1',
             type: 'choose-word',
-            instruction: 'Kata mana yang berbunyi "BOLA"?',
-            audioText: 'Bola',
-            options: ['BOLA', 'BALA', 'BULA', 'BOLO'],
-            correct: 'BOLA'
+            level: 1,
+            domain: 'spelling',
+            instruction: 'Ini huruf apa? Pilih yang sama!',
+            audioText: 'b',
+            options: ['b', 'd', 'p', 'q'],
+            correct: 'b'
         },
         {
-            id: 'r2',
+            id: 'l1q2',
             type: 'choose-word',
-            instruction: 'Kata mana yang berbunyi "IBU"?',
-            audioText: 'Ibu',
-            options: ['IBO', 'IBU', 'UBI', 'UBU'],
-            correct: 'IBU'
+            level: 1,
+            domain: 'spelling',
+            instruction: 'Ini huruf apa? Pilih yang sama!',
+            audioText: 'm',
+            options: ['n', 'm', 'u', 'w'],
+            correct: 'm'
+        }
+    ],
+
+    // ───── LEVEL 2: Kesadaran Fonologis (Phonological Awareness) ─────
+    // Fokus: identifikasi fonem awal kata (phoneme isolation)
+    level2: [
+        {
+            id: 'l2q1',
+            type: 'choose-word',
+            level: 2,
+            domain: 'spelling',
+            instruction: 'Bunyi pertama dari kata "API" adalah?',
+            audioText: 'API',
+            options: ['A', 'P', 'I', 'U'],
+            correct: 'A'
         },
         {
-            id: 'r3',
+            id: 'l2q2',
+            type: 'choose-word',
+            level: 2,
+            domain: 'spelling',
+            instruction: 'Bunyi pertama dari kata "BUKU" adalah?',
+            audioText: 'BUKU',
+            options: ['U', 'K', 'B', 'O'],
+            correct: 'B'
+        }
+    ],
+
+    // ───── LEVEL 3: Blending Bunyi ─────
+    // Fokus: menggabungkan fonem menjadi kata (phoneme blending)
+    level3: [
+        {
+            id: 'l3q1',
+            type: 'choose-word',
+            level: 3,
+            domain: 'spelling',
+            instruction: 'A - Y - A - M digabung menjadi kata apa?',
+            audioText: 'A - Y - A - M',
+            options: ['AYAM', 'AMAT', 'AYAN', 'AZAM'],
+            correct: 'AYAM'
+        },
+        {
+            id: 'l3q2',
+            type: 'choose-word',
+            level: 3,
+            domain: 'spelling',
+            instruction: 'I - K - A - N digabung menjadi kata apa?',
+            audioText: 'I - K - A - N',
+            options: ['AKAN', 'IKAN', 'IKAT', 'OKAM'],
+            correct: 'IKAN'
+        }
+    ],
+
+    // ───── LEVEL 4: Pengenalan Kata (Word Recognition) ─────
+    // Fokus: mencocokkan kata tertulis dengan objek/gambar
+    level4: [
+        {
+            id: 'l4q1',
             type: 'match-image',
-            instruction: 'Gambar ini adalah apa?',
+            level: 4,
+            domain: 'reading',
+            instruction: 'Gambar ini adalah?',
             emoji: '🍎',
             options: ['APEL', 'ABEL', 'APAL', 'IPEL'],
             correct: 'APEL'
         },
         {
-            id: 'r4',
+            id: 'l4q2',
             type: 'match-image',
-            instruction: 'Gambar ini adalah apa?',
+            level: 4,
+            domain: 'reading',
+            instruction: 'Gambar ini adalah?',
             emoji: '🐱',
             options: ['KUCIN', 'KUCING', 'KACING', 'KUCIGG'],
             correct: 'KUCING'
         }
     ],
 
-    // ───── DOMAIN MENGEJA (4 soal) ─────
-    // Fokus: phonological awareness + spelling
-    spelling: [
+    // ───── LEVEL 5: Membaca Kalimat Sederhana ─────
+    // Fokus: mengidentifikasi kata yang diucapkan (word-level decoding)
+    level5: [
         {
-            id: 's1',
-            type: 'first-letter',
-            instruction: 'Huruf pertama dari kata "APEL" adalah?',
-            audioText: 'Apel',
-            options: ['A', 'E', 'P', 'L'],
-            correct: 'A'
+            id: 'l5q1',
+            type: 'choose-word',
+            level: 5,
+            domain: 'reading',
+            instruction: 'Kata mana yang berbunyi "BOLA"?',
+            audioText: 'Bola',
+            options: ['BOLA', 'BALA', 'BULA', 'BOLO'],
+            correct: 'BOLA'
         },
         {
-            id: 's2',
-            type: 'first-letter',
-            instruction: 'Huruf pertama dari kata "BUKU" adalah?',
-            audioText: 'Buku',
-            options: ['U', 'K', 'B', 'O'],
-            correct: 'B'
-        },
-        {
-            id: 's3',
-            type: 'count-letters',
-            instruction: 'Kata "MATA" terdiri dari berapa huruf?',
-            audioText: 'Mata',
-            options: ['3', '4', '5', '2'],
-            correct: '4'
-        },
-        {
-            id: 's4',
-            type: 'missing-letter',
-            instruction: 'Huruf yang hilang pada kata "B_KU" adalah?',
-            audioText: 'Buku',
-            options: ['A', 'U', 'O', 'I'],
-            correct: 'U'
+            id: 'l5q2',
+            type: 'choose-word',
+            level: 5,
+            domain: 'reading',
+            instruction: 'Kata mana yang berbunyi "SEKOLAH"?',
+            audioText: 'Sekolah',
+            options: ['SEKOLAH', 'SEKOLEH', 'SIKOLAH', 'SEKOLHAH'],
+            correct: 'SEKOLAH'
         }
     ],
 
-    // ───── DOMAIN BERHITUNG (4 soal) ─────
-    // Fokus: number sense + basic operations
-    math: [
+    // ───── LEVEL 6: Kelancaran Membaca (Reading Fluency) ─────
+    // Fokus: kata multi-suku kata dan jumlah kata dalam kalimat
+    level6: [
         {
-            id: 'm1',
-            type: 'count-emoji',
-            instruction: 'Berapa jumlah apel?',
-            emojis: '🍎🍎🍎',
-            options: ['2', '3', '4', '5'],
-            correct: '3'
+            id: 'l6q1',
+            type: 'choose-word',
+            level: 6,
+            domain: 'reading',
+            instruction: 'Kata mana yang berbunyi "BELAJAR"?',
+            audioText: 'Belajar',
+            options: ['BELJAR', 'BELEJAR', 'BELAJAR', 'BEALJAR'],
+            correct: 'BELAJAR'
         },
         {
-            id: 'm2',
-            type: 'simple-add',
-            instruction: 'Berapa hasilnya?',
-            question: '2 + 1 = ?',
-            options: ['2', '3', '4', '5'],
-            correct: '3'
-        },
-        {
-            id: 'm3',
-            type: 'simple-add',
-            instruction: 'Berapa hasilnya?',
-            question: '3 + 2 = ?',
-            options: ['4', '5', '6', '7'],
-            correct: '5'
-        },
-        {
-            id: 'm4',
-            type: 'count-compare',
-            instruction: 'Mana yang lebih banyak?',
-            optionsEmoji: [
-                { label: 'A', emoji: '⭐⭐⭐⭐', value: 4 },
-                { label: 'B', emoji: '⭐⭐', value: 2 }
-            ],
-            options: ['A', 'B'],
-            correct: 'A'
+            id: 'l6q2',
+            type: 'count-letters',
+            level: 6,
+            domain: 'reading',
+            instruction: 'Kalimat "Kucing kecil bermain bola" terdiri dari berapa kata?',
+            audioText: 'Kucing kecil bermain bola',
+            options: ['3', '4', '5', '6'],
+            correct: '4'
         }
     ]
 };
@@ -147,11 +189,14 @@ const assessmentState = {
 /* -------------------- INISIALISASI -------------------- */
 
 function initAssessment() {
-    // Gabung semua soal menjadi flat array dengan tag domain
+    // Gabung semua soal menjadi flat array terurut dari Level 1 ke Level 6
     assessmentState.allQuestions = [
-        ...ASSESSMENT_QUESTIONS.reading.map(q => ({ ...q, domain: 'reading' })),
-        ...ASSESSMENT_QUESTIONS.spelling.map(q => ({ ...q, domain: 'spelling' })),
-        ...ASSESSMENT_QUESTIONS.math.map(q => ({ ...q, domain: 'math' }))
+        ...ASSESSMENT_QUESTIONS.level1,
+        ...ASSESSMENT_QUESTIONS.level2,
+        ...ASSESSMENT_QUESTIONS.level3,
+        ...ASSESSMENT_QUESTIONS.level4,
+        ...ASSESSMENT_QUESTIONS.level5,
+        ...ASSESSMENT_QUESTIONS.level6
     ];
 
     assessmentState.currentIndex = 0;
@@ -176,12 +221,14 @@ function renderAssessmentQuestion() {
     progressLabel.innerText = `Soal ${current} dari ${total}`;
     progressBar.style.width = ((current / total) * 100) + '%';
 
-    // Domain badge
+    // Domain badge (hanya membaca dan mengeja sesuai scope penelitian)
     const domainInfo = {
         reading:  { label: '📖 Membaca', color: 'bg-blue-100 text-brand-blue' },
-        spelling: { label: '🔤 Mengeja', color: 'bg-green-100 text-green-700' },
-        math:     { label: '🔢 Berhitung', color: 'bg-purple-100 text-purple-700' }
-    }[q.domain];
+        spelling: { label: '🔤 Mengeja', color: 'bg-green-100 text-green-700' }
+    }[q.domain] || { label: '📖 Membaca', color: 'bg-blue-100 text-brand-blue' };
+
+    // Badge level untuk identifikasi soal
+    const levelBadge = `<span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 ml-2">Level ${q.level}</span>`;
 
     let questionVisual = '';
 
@@ -214,10 +261,11 @@ function renderAssessmentQuestion() {
 
     container.innerHTML = `
         <div class="text-center">
-            <div class="flex justify-center mb-4">
+            <div class="flex justify-center mb-4 gap-2 flex-wrap">
                 <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${domainInfo.color}">
                     ${domainInfo.label}
                 </span>
+                ${levelBadge}
             </div>
 
             <p class="text-gray-500 text-lg mb-6">${q.instruction}</p>
@@ -245,11 +293,12 @@ function submitAssessmentAnswer(userAnswer) {
     const q = assessmentState.allQuestions[assessmentState.currentIndex];
     const isCorrect = userAnswer === q.correct;
 
-    // Simpan jawaban
+    // Simpan jawaban (termasuk level soal untuk pemetaan 6-level)
     assessmentState.answers.push({
         questionId: q.id,
-        domain: q.domain,
-        correct: isCorrect,
+        domain:     q.domain,
+        level:      q.level,
+        correct:    isCorrect,
         userAnswer
     });
     assessmentState.totalAnswered++;
@@ -279,56 +328,57 @@ function submitAssessmentAnswer(userAnswer) {
 
 /* -------------------- HITUNG SKOR & TENTUKAN LEVEL -------------------- */
 
+/**
+ * Hitung hasil skrining dan tentukan level entry awal (1-6).
+ *
+ * Pemetaan skor ke level berdasarkan ASSESSMENT_CONFIG.ENTRY_THRESHOLDS:
+ *   Skor 0-1  → Level 1 (Pengenalan Huruf)
+ *   Skor 2-3  → Level 2 (Kesadaran Fonologis)
+ *   Skor 4-5  → Level 3 (Blending Bunyi)
+ *   Skor 6-7  → Level 4 (Pengenalan Kata)
+ *   Skor 8-9  → Level 5 (Kalimat Sederhana)
+ *   Skor 10-12 → Level 6 (Kelancaran Membaca)
+ *
+ * Justifikasi: Entry level yang tepat mencegah frustration (terlalu sulit)
+ * dan boredom (terlalu mudah), sesuai ZPD Vygotsky (1978).
+ */
 function calculateAssessmentResult() {
-    const scores = { reading: 0, spelling: 0, math: 0 };
-    const maxPerDomain = 4;
+    const scores   = { spelling: 0, reading: 0 };
+    const byLevel  = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+    const totalMax = 12;
 
     assessmentState.answers.forEach(ans => {
-        if (ans.correct) scores[ans.domain]++;
+        if (ans.correct) {
+            scores[ans.domain] = (scores[ans.domain] || 0) + 1;
+            if (ans.level)     byLevel[ans.level]++;
+        }
     });
 
-    const totalScore = scores.reading + scores.spelling + scores.math;
-    const totalMax = 12;
-    const percentage = (totalScore / totalMax) * 100;
+    const totalScore = scores.spelling + scores.reading;
+    const percentage = Math.round((totalScore / totalMax) * 100);
 
-    // Tentukan level entry
-    let entryLevel, entryLabel, entryEmoji;
-    if (percentage >= 78) {          // ≥ 9/12 benar
-        entryLevel = 2;
-        entryLabel = 'Sedang';
-        entryEmoji = '🌟';
-    } else if (percentage >= 44) {   // ≥ 5/12 benar
-        entryLevel = 1;
-        entryLabel = 'Mudah';
-        entryEmoji = '🌱';
-    } else {                         // < 5/12 benar
-        entryLevel = 1;
-        entryLabel = 'Mudah (dengan pendampingan)';
-        entryEmoji = '🌱';
+    // Tentukan entry level berdasarkan total skor
+    let entryLevel = 1;
+    const thresholds = ASSESSMENT_CONFIG.ENTRY_THRESHOLDS;
+    for (let lv = 6; lv >= 1; lv--) {
+        if (totalScore >= thresholds[lv]) {
+            entryLevel = lv;
+            break;
+        }
     }
 
-    // Identifikasi domain terkuat & terlemah
-    const sortedDomains = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-    const strongest = sortedDomains[0];
-    const weakest = sortedDomains[sortedDomains.length - 1];
-
-    const domainName = {
-        reading:  'Membaca',
-        spelling: 'Mengeja',
-        math:     'Berhitung'
-    };
+    const levelInfo = LEVEL_CONFIG.LABELS[entryLevel];
 
     return {
         scores,
+        byLevel,
         totalScore,
         totalMax,
-        percentage: Math.round(percentage),
+        percentage,
         entryLevel,
-        entryLabel,
-        entryEmoji,
-        strongest: { key: strongest[0], name: domainName[strongest[0]], score: strongest[1] },
-        weakest: { key: weakest[0], name: domainName[weakest[0]], score: weakest[1] },
-        timestamp: Date.now(),
+        entryLabel: `Level ${entryLevel}: ${levelInfo.name}`,
+        entryEmoji: levelInfo.emoji,
+        timestamp:  Date.now(),
         completedAt: new Date().toISOString()
     };
 }
@@ -440,11 +490,22 @@ function renderAssessmentSummary() {
         return;
     }
 
+    // Tampilkan skor per domain (mengeja + membaca)
     const domainRows = [
-        { key: 'reading', name: 'Membaca (Disleksia)', score: result.scores.reading, color: 'blue' },
-        { key: 'spelling', name: 'Mengeja (Disgrafia)', score: result.scores.spelling, color: 'green' },
-        { key: 'math', name: 'Berhitung (Diskalkulia)', score: result.scores.math, color: 'purple' }
+        { key: 'spelling', name: 'Mengeja (Level 1-3)', score: result.scores.spelling || 0, max: 6, color: 'green' },
+        { key: 'reading',  name: 'Membaca (Level 4-6)', score: result.scores.reading  || 0, max: 6, color: 'blue' }
     ];
+
+    // Tampilkan skor per level
+    const levelNames = {
+        1: 'Pengenalan Huruf',
+        2: 'Kesadaran Fonologis',
+        3: 'Blending Bunyi',
+        4: 'Pengenalan Kata',
+        5: 'Kalimat Sederhana',
+        6: 'Kelancaran Membaca'
+    };
+    const byLevel = result.byLevel || {};
 
     container.innerHTML = `
         <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
@@ -466,17 +527,27 @@ function renderAssessmentSummary() {
                     <div class="flex items-center gap-3">
                         <div class="flex-1 text-sm font-medium text-gray-700">${row.name}</div>
                         <div class="flex-1 bg-gray-100 rounded-full h-3">
-                            <div class="bg-${row.color}-500 h-3 rounded-full" style="width: ${(row.score / 4) * 100}%"></div>
+                            <div class="bg-${row.color}-500 h-3 rounded-full" style="width: ${(row.score / row.max) * 100}%"></div>
                         </div>
-                        <div class="text-sm font-bold text-gray-600 w-10 text-right">${row.score}/4</div>
+                        <div class="text-sm font-bold text-gray-600 w-12 text-right">${row.score}/${row.max}</div>
                     </div>
                 `).join('')}
             </div>
 
-            <div class="border-t border-gray-100 pt-3 space-y-1 text-xs text-gray-600">
+            <div class="border-t border-gray-100 pt-3 mb-3">
+                <div class="text-xs font-semibold text-gray-500 mb-2">Detail per Level:</div>
+                <div class="grid grid-cols-3 gap-1">
+                    ${[1,2,3,4,5,6].map(lv => `
+                        <div class="text-center p-1.5 rounded-lg ${(byLevel[lv] || 0) === 2 ? 'bg-green-50 border border-green-200' : (byLevel[lv] || 0) === 1 ? 'bg-yellow-50 border border-yellow-200' : 'bg-gray-50 border border-gray-100'}">
+                            <div class="text-[10px] font-bold text-gray-500">Lv ${lv}</div>
+                            <div class="text-sm font-bold ${(byLevel[lv] || 0) === 2 ? 'text-green-600' : (byLevel[lv] || 0) === 1 ? 'text-yellow-600' : 'text-gray-400'}">${byLevel[lv] || 0}/2</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-3 text-xs text-gray-600">
                 <div><span class="font-semibold">Level awal:</span> ${result.entryEmoji} ${result.entryLabel}</div>
-                <div><span class="font-semibold">Domain terkuat:</span> ${result.strongest.name} (${result.strongest.score}/4)</div>
-                <div><span class="font-semibold">Perlu latihan ekstra:</span> ${result.weakest.name} (${result.weakest.score}/4)</div>
             </div>
 
             <button onclick="resetAssessmentAndRedo()" class="mt-4 w-full text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded-lg">
