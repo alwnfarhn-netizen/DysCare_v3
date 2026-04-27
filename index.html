@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DysCare - Bantu Belajar Disleksia, Disgrafia & Diskalkulia</title>
+    <title>DysCare - Media Pembelajaran Membaca Permulaan untuk Anak Disleksia</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -107,7 +107,7 @@
 
             <div class="mb-10 pt-4">
                 <h1 class="text-5xl font-bold text-brand-blue mb-2 tracking-tight drop-shadow-sm">DysCare</h1>
-                <p class="text-gray-500 text-lg">Solusi Disleksia, Disgrafia & Diskalkulia</p>
+                <p class="text-gray-500 text-lg">Belajar Membaca Lebih Mudah dengan Multisensori VAKT</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
@@ -119,7 +119,9 @@
                     <p class="text-sm text-gray-400 mt-1">Latihan Disleksia</p>
                 </div>
 
-                <div onclick="navigateTo('writing-screen')" class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Menulis: di-hide sesuai scope penelitian (Bab III proposal).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia). -->
+                <div onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-red-100 p-4 rounded-full mb-4 group-hover:bg-red-200 transition">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
@@ -135,7 +137,9 @@
                     <p class="text-sm text-gray-400 mt-1">Susun Kata</p>
                 </div>
 
-                <div onclick="navigateTo('math-screen')" class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Berhitung: di-hide sesuai scope penelitian (Bab III proposal).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia). -->
+                <div onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-purple-100 p-4 rounded-full mb-4 group-hover:bg-purple-200 transition">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
@@ -189,16 +193,34 @@
 
         <!-- 2. Reading Screen -->
         <div id="reading-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca (Disleksia)</h2>
-                <div class="bg-blue-50 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">Skor: <span id="reading-score">0</span></div>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca</h2>
+                <div class="bg-blue-50 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="reading-score">0</span></div>
             </div>
+
+            <!-- Label VAKT: eksplisit untuk penilaian ahli media (Bab III proposal) -->
+            <div class="flex flex-wrap gap-2 mb-5">
+                <span class="vakt-badge vakt-v" title="Visual: teks dan word highlighting">V</span>
+                <span class="vakt-badge vakt-a" title="Auditory: Text-to-Speech bahasa Indonesia">A</span>
+                <span class="vakt-badge vakt-k" title="Kinesthetic: perekaman suara (Speech-to-Text)">K</span>
+                <span class="vakt-badge vakt-t" title="Tactile: sentuhan layar untuk interaksi">T</span>
+                <span class="text-xs text-gray-400 self-center ml-1">Modalitas VAKT aktif</span>
+            </div>
+
             <div class="flex-grow flex flex-col items-center justify-center">
                 <div id="reading-content" class="text-2xl md:text-3xl text-center leading-relaxed mb-8 font-medium text-gray-700 transition-all p-4 rounded-xl">Menunggu materi...</div>
                 <div id="reading-controls" class="flex flex-wrap justify-center gap-4 w-full">
-                    <button id="btn-listen" class="main-button bg-blue-100 hover:bg-blue-200 text-brand-blue px-6 py-3 rounded-xl font-bold flex items-center gap-2"><i class="fa-solid fa-volume-high"></i> Dengar</button>
-                    <button id="btn-speak" class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-200"><i class="fa-solid fa-microphone"></i> Baca (Rekam)</button>
-                    <button id="btn-next-reading" class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">Buat Cerita Ajaib <i class="fa-solid fa-wand-magic-sparkles ml-1"></i></button>
+                    <button id="btn-listen" class="main-button bg-blue-100 hover:bg-blue-200 text-brand-blue px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-volume-high"></i> Dengar
+                        <span class="text-[10px] bg-blue-200 text-blue-700 px-1.5 py-0.5 rounded font-bold ml-1">A</span>
+                    </button>
+                    <button id="btn-speak" class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-200">
+                        <i class="fa-solid fa-microphone"></i> Baca (Rekam)
+                        <span class="text-[10px] bg-green-700 text-white px-1.5 py-0.5 rounded font-bold ml-1">K</span>
+                    </button>
+                    <button id="btn-next-reading" class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                        Cerita AI <i class="fa-solid fa-wand-magic-sparkles ml-1"></i>
+                    </button>
                 </div>
                 <div id="reading-feedback" class="mt-6 h-8 text-lg font-semibold text-center text-gray-500"></div>
             </div>
@@ -243,9 +265,18 @@
 
         <!-- 4. Spelling Screen -->
         <div id="spelling-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-green-600"><i class="fa-solid fa-shapes mr-2"></i> Mengeja (Visual)</h2>
-                <div class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Skor: <span id="spelling-score">0</span></div>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-2xl font-bold text-green-600"><i class="fa-solid fa-shapes mr-2"></i> Mengeja</h2>
+                <div class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="spelling-score">0</span></div>
+            </div>
+
+            <!-- Label VAKT: eksplisit untuk penilaian ahli media (Bab III proposal) -->
+            <div class="flex flex-wrap gap-2 mb-5">
+                <span class="vakt-badge vakt-v" title="Visual: gambar AI, tile huruf">V</span>
+                <span class="vakt-badge vakt-a" title="Auditory: Text-to-Speech nama kata">A</span>
+                <span class="vakt-badge vakt-k" title="Kinesthetic: drag-and-drop huruf">K</span>
+                <span class="vakt-badge vakt-t" title="Tactile: sentuh tile untuk pindah huruf">T</span>
+                <span class="text-xs text-gray-400 self-center ml-1">Modalitas VAKT aktif</span>
             </div>
             <div class="flex-grow flex flex-col items-center">
                 <div id="spelling-image-container" class="spelling-image-placeholder mb-6 relative group">
@@ -296,26 +327,37 @@
         <div id="progress-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8">
             <h2 class="text-2xl font-bold text-orange-500 mb-6 text-center"><i class="fa-solid fa-trophy mr-2"></i> Capaian Belajar</h2>
 
-            <!-- Level Indicator -->
-            <div id="level-indicator" class="mb-6 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-2xl border border-orange-100">
+            <!-- Level Indicator: menampilkan level saat ini dari sistem 6-level -->
+            <div id="level-indicator" class="mb-4 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-2xl border border-orange-100">
                 <div class="text-sm text-gray-500 mb-1">Level Kamu Saat Ini</div>
-                <div class="text-3xl font-bold text-orange-500" id="current-level-label">🌱 Mudah</div>
-                <div class="text-xs text-gray-500 mt-1" id="current-level-hint">Kumpulkan 50 poin untuk naik ke Level Sedang</div>
+                <div class="text-2xl font-bold text-orange-500" id="current-level-label">🔤 Level 1: Pengenalan Huruf</div>
+                <div class="text-xs text-gray-500 mt-1" id="current-level-hint">Capai akurasi 80% selama 3 sesi untuk naik ke Level 2</div>
             </div>
 
-            <div class="grid gap-6">
-                <div class="bg-blue-50 p-6 rounded-2xl">
-                    <div class="flex justify-between mb-2"><span class="font-bold text-brand-bluehover">Membaca</span><span id="prog-read-val" class="font-bold text-brand-bluehover">0 Poin</span></div>
-                    <div class="w-full bg-blue-200 rounded-full h-4"><div id="prog-bar-read" class="bg-brand-blue h-4 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+            <!-- Sesi lulus berturut-turut (progress menuju naik level) -->
+            <div class="mb-6 bg-white border border-orange-100 rounded-xl p-3">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600 font-medium">Sesi lulus berturut-turut:</span>
+                    <span id="current-level-pass-count" class="font-bold text-orange-500">0/3</span>
                 </div>
-                <div class="bg-green-50 p-6 rounded-2xl">
-                    <div class="flex justify-between mb-2"><span class="font-bold text-green-700">Mengeja</span><span id="prog-spell-val" class="font-bold text-green-700">0 Poin</span></div>
-                    <div class="w-full bg-green-200 rounded-full h-4"><div id="prog-bar-spell" class="bg-green-500 h-4 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                <div class="w-full bg-orange-100 rounded-full h-2 mt-2">
+                    <div id="prog-bar-session" class="bg-orange-400 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
                 </div>
-                <div class="bg-purple-50 p-6 rounded-2xl">
-                    <div class="flex justify-between mb-2"><span class="font-bold text-purple-700">Berhitung</span><span id="prog-math-val" class="font-bold text-purple-700">0 Poin</span></div>
-                    <div class="w-full bg-purple-200 rounded-full h-4"><div id="prog-bar-math" class="bg-purple-500 h-4 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                <div class="text-[10px] text-gray-400 mt-1">Akurasi ≥80% per sesi diperlukan untuk naik level</div>
+            </div>
+
+            <div class="grid gap-4">
+                <div class="bg-blue-50 p-5 rounded-2xl">
+                    <div class="flex justify-between mb-2"><span class="font-bold text-brand-bluehover">Membaca</span><span id="prog-read-val" class="font-bold text-brand-bluehover">0 Latihan</span></div>
+                    <div class="w-full bg-blue-200 rounded-full h-3"><div id="prog-bar-read" class="bg-brand-blue h-3 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
                 </div>
+                <div class="bg-green-50 p-5 rounded-2xl">
+                    <div class="flex justify-between mb-2"><span class="font-bold text-green-700">Mengeja</span><span id="prog-spell-val" class="font-bold text-green-700">0 Latihan</span></div>
+                    <div class="w-full bg-green-200 rounded-full h-3"><div id="prog-bar-spell" class="bg-green-500 h-3 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                </div>
+                <!-- Elemen prog-math dipertahankan (hidden) untuk kompatibilitas dan future development -->
+                <div id="prog-math-val" class="hidden">0</div>
+                <div id="prog-bar-math" class="hidden"></div>
             </div>
 
             <div id="ai-advice-container" class="mt-6 bg-yellow-50 p-4 rounded-xl border border-brand-yellow hidden">

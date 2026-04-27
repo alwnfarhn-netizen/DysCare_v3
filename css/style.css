@@ -268,7 +268,7 @@ body[class*="dyslexia-mode"] .trace-guide {
     padding: 0 2px;
 }
 
-/* --- LEVEL BADGES (NEW) --- */
+/* --- LEVEL BADGES (6-level sistem sesuai Task Analysis Bab III) --- */
 .level-badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -278,20 +278,40 @@ body[class*="dyslexia-mode"] .trace-guide {
     margin-left: 0.5rem;
 }
 
-.level-badge-easy {
-    background-color: #dcfce7;
-    color: #16a34a;
+/* Pemetaan warna badge per level (1-6) */
+.level-badge-1 { background-color: #dbeafe; color: #1d4ed8; }
+.level-badge-2 { background-color: #dcfce7; color: #16a34a; }
+.level-badge-3 { background-color: #fef3c7; color: #b45309; }
+.level-badge-4 { background-color: #ffedd5; color: #c2410c; }
+.level-badge-5 { background-color: #fee2e2; color: #b91c1c; }
+.level-badge-6 { background-color: #f3e8ff; color: #7e22ce; }
+
+/* Kompatibilitas mundur (nama lama) */
+.level-badge-easy   { background-color: #dbeafe; color: #1d4ed8; }
+.level-badge-medium { background-color: #fef3c7; color: #b45309; }
+.level-badge-hard   { background-color: #f3e8ff; color: #7e22ce; }
+
+/* --- VAKT BADGE: label modalitas multisensori untuk penilaian ahli media --- */
+/* Referensi: Birsh (2018) Multisensory Teaching of Basic Language Skills */
+.vakt-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 900;
+    cursor: help;
+    transition: transform 0.15s;
 }
 
-.level-badge-medium {
-    background-color: #fef3c7;
-    color: #d97706;
-}
+.vakt-badge:hover { transform: scale(1.15); }
 
-.level-badge-hard {
-    background-color: #fee2e2;
-    color: #dc2626;
-}
+.vakt-v { background-color: #dbeafe; color: #1d4ed8; border: 2px solid #bfdbfe; }
+.vakt-a { background-color: #dcfce7; color: #15803d; border: 2px solid #bbf7d0; }
+.vakt-k { background-color: #ffedd5; color: #c2410c; border: 2px solid #fed7aa; }
+.vakt-t { background-color: #f3e8ff; color: #7e22ce; border: 2px solid #e9d5ff; }
 
 /* --- PRE-ASSESSMENT --- */
 .assessment-option-btn {

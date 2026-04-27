@@ -94,17 +94,22 @@ function setupSpelling() {
 
     document.getElementById('btn-check-spelling').addEventListener('click', () => {
         const currentAnswer = Array.from(drop.children).map(c => c.innerText).join('');
-        if (currentAnswer === appState.spelling.currentWordObj.word.toUpperCase()) {
+        const isCorrect = currentAnswer === appState.spelling.currentWordObj.word.toUpperCase();
+
+        if (isCorrect) {
             playSound('correct');
             document.getElementById('spelling-feedback').innerHTML =
                 `<span class="text-green-500 feedback-animation"><i class="fa-solid fa-check-circle"></i> Benar!</span>`;
-            appState.progress.spelling += 10;
+            appState.progress.spelling++;
             saveProgress();
         } else {
             playSound('wrong');
             document.getElementById('spelling-feedback').innerHTML =
                 `<span class="text-red-400">Coba lagi...</span>`;
         }
+
+        // Catat hasil untuk adaptive level progression (akurasi berbasis sesi)
+        recordExerciseResult(isCorrect);
     });
 
     document.getElementById('btn-next-spelling').addEventListener('click', loadSpellingContent);

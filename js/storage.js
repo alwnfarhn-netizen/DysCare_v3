@@ -14,11 +14,6 @@ function loadProgress() {
 function saveProgress() {
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(appState.progress));
     updateScoreDisplays();
-
-    // Cek apakah perlu naik level
-    checkLevelUp();
-
-    // Simpan session ke history (untuk fitur chart di Fase 3)
     saveSessionEntry();
 }
 
@@ -36,7 +31,9 @@ function updateScoreDisplays() {
 function loadLevel() {
     const saved = localStorage.getItem(STORAGE_KEYS.LEVEL);
     if (saved) {
-        appState.currentLevel = parseInt(saved, 10);
+        const parsed = parseInt(saved, 10);
+        // Validasi: level harus antara 1-6 sesuai sistem baru
+        appState.currentLevel = (parsed >= 1 && parsed <= 6) ? parsed : 1;
     } else {
         appState.currentLevel = 1;
     }
@@ -46,19 +43,43 @@ function saveLevel() {
     localStorage.setItem(STORAGE_KEYS.LEVEL, String(appState.currentLevel));
 }
 
-/* -------------------- SESSION HISTORY (untuk chart nanti) -------------------- */
+/* -------------------- LEVEL PROGRESS (session accuracy tracking) -------------------- */
+
+/**
+ * Muat riwayat sesi akurasi dari localStorage ke appState.sessionTracker.
+ */
+function loadLevelProgress() {
+    const saved = localStorage.getItem(STORAGE_KEYS.LEVEL_PROGRESS);
+    if (saved) {
+        const data = JSON.parse(saved);
+        appState.sessionTracker.consecutivePass = data.consecutivePass || 0;
+        appState.sessionTracker.history         = data.history         || [];
+    }
+}
+
+/**
+ * Simpan riwayat sesi akurasi ke localStorage.
+ */
+function saveLevelProgress() {
+    const data = {
+        consecutivePass: appState.sessionTracker.consecutivePass,
+        history:         appState.sessionTracker.history
+    };
+    localStorage.setItem(STORAGE_KEYS.LEVEL_PROGRESS, JSON.stringify(data));
+}
+
+/* -------------------- SESSION HISTORY -------------------- */
 function saveSessionEntry() {
     const history = JSON.parse(localStorage.getItem(STORAGE_KEYS.HISTORY) || '[]');
     history.push({
         timestamp: Date.now(),
-        date: new Date().toISOString().split('T')[0],
-        progress: { ...appState.progress },
-        level: appState.currentLevel
+        date:      new Date().toISOString().split('T')[0],
+        progress:  { ...appState.progress },
+        level:     appState.currentLevel,
+        consecutivePass: appState.sessionTracker.consecutivePass
     });
 
-    // Batasi maksimal 100 entri terakhir supaya tidak membengkak
     if (history.length > 100) history.shift();
-
     localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(history));
 }
 
@@ -70,7 +91,7 @@ function getSessionHistory() {
 function loadProfileData() {
     const p = localStorage.getItem(STORAGE_KEYS.PROFILE);
     if (p) {
-        const data = JSON.parse(p);
+        const data  = JSON.parse(p);
         const input = document.getElementById('profile-name-input');
         if (input) input.value = data.name || '';
     }
@@ -82,26 +103,32 @@ function saveProfileData(name) {
 
 function getProfileName() {
     const p = localStorage.getItem(STORAGE_KEYS.PROFILE);
-    if (p) {
-        return JSON.parse(p).name || '';
-    }
+    if (p) return JSON.parse(p).name || '';
     return '';
 }
 
 /* -------------------- RESET -------------------- */
 function confirmResetProgress() {
+    // Reset semua data progress dan level
     appState.progress = { reading: 0, spelling: 0, math: 0 };
     appState.currentLevel = 1;
+    appState.sessionTracker = {
+        correct:         0,
+        attempts:        0,
+        consecutivePass: 0,
+        history:         []
+    };
 
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(appState.progress));
     localStorage.setItem(STORAGE_KEYS.LEVEL, '1');
     localStorage.removeItem(STORAGE_KEYS.HISTORY);
     localStorage.removeItem(STORAGE_KEYS.ASSESSMENT);
+    localStorage.removeItem(STORAGE_KEYS.LEVEL_PROGRESS);
 
     updateScoreDisplays();
     updateProgressUI();
     closeModal('confirm-modal');
-    showInfoModal('Sukses', 'Progres, level, dan skrining telah direset. Silakan lakukan skrining ulang saat buka aplikasi lagi.');
+    showInfoModal('Sukses', 'Semua progres, level, dan skrining telah direset. Silakan lakukan skrining ulang saat membuka aplikasi lagi.');
 }
 
 function resetProgressWithConfirmation() {
