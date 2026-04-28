@@ -5,13 +5,31 @@
 
 const appState = {
     currentScreen: 'home-screen',
-    currentLevel: 1, // 1=Mudah, 2=Sedang, 3=Sulit
 
-    // Progress per modul
+    /**
+     * Level saat ini: 1-6 sesuai Task Analysis Bab III proposal.
+     * Naik level: akurasi ≥80% pada 3 sesi berturut-turut
+     * (Cooper, Heron & Heward, 2020 - mastery learning criterion).
+     */
+    currentLevel: 1,
+
+    /**
+     * Pelacak sesi untuk adaptive progression berbasis akurasi.
+     * Setiap EXERCISES_PER_SESSION latihan dihitung sebagai 1 sesi.
+     * Konsisten dengan mekanisme rule-based adaptive learning Bab III.
+     */
+    sessionTracker: {
+        correct:  0,  // latihan benar dalam sesi ini
+        attempts: 0,  // total latihan dalam sesi ini (benar + salah)
+        consecutivePass: 0, // sesi berturut-turut dengan akurasi ≥80%
+        history: []   // [{level, accuracy, passed, timestamp}]
+    },
+
+    // Progress per modul (jumlah latihan selesai, digunakan untuk tampilan)
     progress: {
         reading: 0,
         spelling: 0,
-        math: 0
+        math: 0   // dipertahankan untuk future development (Modul Berhitung)
     },
 
     // MODUL MEMBACA (konten disusun per level)
