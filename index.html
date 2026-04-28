@@ -119,9 +119,11 @@
                     <p class="text-sm text-gray-400 mt-1">Latihan Disleksia</p>
                 </div>
 
-                <!-- Modul Menulis: di-hide sesuai scope penelitian (Bab III proposal).
-                     Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia). -->
-                <div onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Menulis: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia).
+                     Aktifkan kembali pada fase Implementation penelitian lanjutan
+                     via SHOW_DISGRAFIA_MODUL = true di js/config.js -->
+                <div id="card-menulis" onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-red-100 p-4 rounded-full mb-4 group-hover:bg-red-200 transition">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
@@ -135,11 +137,14 @@
                     </div>
                     <h2 class="text-xl font-bold text-gray-700">Mengeja</h2>
                     <p class="text-sm text-gray-400 mt-1">Susun Kata</p>
+                    <p class="text-xs text-gray-300 mt-1 px-2 leading-tight">Latihan fonologis &amp; korespondensi grafem-fonem (Level 2–3)</p>
                 </div>
 
-                <!-- Modul Berhitung: di-hide sesuai scope penelitian (Bab III proposal).
-                     Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia). -->
-                <div onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Berhitung: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia).
+                     Aktifkan kembali pada fase Implementation penelitian lanjutan
+                     via SHOW_DISKALKULIA_MODUL = true di js/config.js -->
+                <div id="card-berhitung" onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-purple-100 p-4 rounded-full mb-4 group-hover:bg-purple-200 transition">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
@@ -474,8 +479,7 @@
         <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-pop">
             <div class="text-6xl mb-4">🎉</div>
             <h3 class="text-2xl font-bold text-orange-500 mb-2">Level Naik!</h3>
-            <p class="text-gray-600 mb-4">Kamu sekarang di level</p>
-            <div id="new-level-display" class="text-3xl font-bold text-brand-blue mb-6">🌟 Sedang</div>
+            <div id="new-level-display" class="text-2xl font-bold text-brand-blue mb-6">Kamu sekarang di Level 1: Pengenalan Huruf</div>
             <p class="text-gray-500 mb-6 text-sm">Soal-soal akan jadi lebih menantang. Semangat!</p>
             <button onclick="closeModal('level-up-modal')" class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Lanjut Belajar</button>
         </div>

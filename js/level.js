@@ -121,7 +121,7 @@ function showLevelUpNotification(newLevel, prevLevel) {
     const display = document.getElementById('new-level-display');
 
     if (display) {
-        display.innerHTML = `${info.emoji} Level ${newLevel}: ${info.name}`;
+        display.innerHTML = `Kamu sekarang di Level ${newLevel}: ${info.name}`;
     }
 
     playSound('levelup');

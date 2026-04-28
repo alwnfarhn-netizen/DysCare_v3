@@ -47,22 +47,22 @@ const LEVEL_CONFIG = {
             hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 3'
         },
         3: {
-            name: 'Blending Bunyi',
-            subtitle: 'Gabungkan bunyi: KV, KV-KV, KVK',
+            name: 'Korespondensi Grafem-Fonem',
+            subtitle: 'Hubungan huruf dan bunyi: fonem ke grafem',
             emoji: '🔊',
             color: 'yellow',
             hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 4'
         },
         4: {
-            name: 'Pengenalan Kata',
-            subtitle: 'Baca kata bermakna KV-KV, KVK, sight words',
+            name: 'Blending Suku Kata',
+            subtitle: 'Menggabungkan suku kata: KV-KV, KVK',
             emoji: '📝',
             color: 'orange',
             hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 5'
         },
         5: {
-            name: 'Kalimat Sederhana',
-            subtitle: 'Kalimat 3-4 kata, pemahaman literal',
+            name: 'Membaca Kata',
+            subtitle: 'Membaca kata bermakna dalam konteks kalimat',
             emoji: '📖',
             color: 'red',
             hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 6'
@@ -76,6 +76,12 @@ const LEVEL_CONFIG = {
         }
     }
 };
+
+// Kontrol visibilitas modul sesuai batasan penelitian fase R&D ini.
+// Dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia)
+// Aktifkan kembali pada fase Implementation penelitian lanjutan
+const SHOW_DISGRAFIA_MODUL   = false;
+const SHOW_DISKALKULIA_MODUL = false;
 
 // Storage Keys (konsisten di seluruh aplikasi)
 const STORAGE_KEYS = {
