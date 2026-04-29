@@ -65,7 +65,10 @@
         <!-- Accessibility Panel -->
         <div id="accessibility-panel" class="hidden fixed top-20 right-4 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white w-80 z-50 transform transition-all duration-300 max-h-[85vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="font-bold text-xl text-gray-700 tracking-tight">Aksesibilitas</h3>
+                <div class="flex items-center gap-2">
+                    <h3 class="font-bold text-xl text-gray-700 tracking-tight">Aksesibilitas</h3>
+                    <button onclick="showInfo('aksesibilitas')" class="text-gray-400 hover:text-gray-600 transition" title="Info aksesibilitas"><i class="fa-solid fa-circle-info"></i></button>
+                </div>
                 <button onclick="toggleAccessibilityPanel()" class="text-gray-400 hover:text-gray-600 transition"><i class="fa-solid fa-times text-lg"></i></button>
             </div>
 
@@ -119,9 +122,11 @@
                     <p class="text-sm text-gray-400 mt-1">Latihan Disleksia</p>
                 </div>
 
-                <!-- Modul Menulis: di-hide sesuai scope penelitian (Bab III proposal).
-                     Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia). -->
-                <div onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Menulis: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia).
+                     Aktifkan kembali pada fase Implementation penelitian lanjutan
+                     via SHOW_DISGRAFIA_MODUL = true di js/config.js -->
+                <div id="card-menulis" onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-red-100 p-4 rounded-full mb-4 group-hover:bg-red-200 transition">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
@@ -135,11 +140,14 @@
                     </div>
                     <h2 class="text-xl font-bold text-gray-700">Mengeja</h2>
                     <p class="text-sm text-gray-400 mt-1">Susun Kata</p>
+                    <p class="text-xs text-gray-400 mt-1">Latihan fonologis &amp; grafem-fonem (Level 2–3)</p>
                 </div>
 
-                <!-- Modul Berhitung: di-hide sesuai scope penelitian (Bab III proposal).
-                     Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia). -->
-                <div onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <!-- Modul Berhitung: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
+                     Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia).
+                     Aktifkan kembali pada fase Implementation penelitian lanjutan
+                     via SHOW_DISKALKULIA_MODUL = true di js/config.js -->
+                <div id="card-berhitung" onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-purple-100 p-4 rounded-full mb-4 group-hover:bg-purple-200 transition">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
@@ -169,7 +177,7 @@
 
             <!-- Header kecil -->
             <div class="text-center mb-6">
-                <div class="inline-block bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-2">SKRINING AWAL</div>
+                <div class="inline-flex items-center gap-1 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-2">SKRINING AWAL<button onclick="showInfo('skrining')" class="text-white/80 hover:text-white" title="Info skrining"><i class="fa-solid fa-circle-info text-sm"></i></button></div>
                 <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mb-1">Halo, Ayo Kenalan Dulu!</h2>
                 <p class="text-gray-500 text-sm">Jawab beberapa soal singkat agar kami bisa siapkan latihan yang tepat untukmu.</p>
             </div>
@@ -194,7 +202,10 @@
         <!-- 2. Reading Screen -->
         <div id="reading-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-3">
-                <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca</h2>
+                <div class="flex items-center gap-2">
+                    <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca</h2>
+                    <button onclick="showInfo('membaca')" class="text-blue-400 hover:text-brand-blue transition" title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
+                </div>
                 <div class="bg-blue-50 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="reading-score">0</span></div>
             </div>
 
@@ -266,7 +277,10 @@
         <!-- 4. Spelling Screen -->
         <div id="spelling-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-3">
-                <h2 class="text-2xl font-bold text-green-600"><i class="fa-solid fa-shapes mr-2"></i> Mengeja</h2>
+                <div class="flex items-center gap-2">
+                    <h2 class="text-2xl font-bold text-green-600"><i class="fa-solid fa-shapes mr-2"></i> Mengeja</h2>
+                    <button onclick="showInfo('mengeja')" class="text-green-400 hover:text-green-600 transition" title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
+                </div>
                 <div class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="spelling-score">0</span></div>
             </div>
 
@@ -325,11 +339,14 @@
 
         <!-- 6. Progress Screen -->
         <div id="progress-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8">
-            <h2 class="text-2xl font-bold text-orange-500 mb-6 text-center"><i class="fa-solid fa-trophy mr-2"></i> Capaian Belajar</h2>
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <h2 class="text-2xl font-bold text-orange-500"><i class="fa-solid fa-trophy mr-2"></i> Capaian Belajar</h2>
+                <button onclick="showInfo('capaian')" class="text-orange-400 hover:text-orange-600 transition" title="Info halaman ini"><i class="fa-solid fa-circle-info"></i></button>
+            </div>
 
             <!-- Level Indicator: menampilkan level saat ini dari sistem 6-level -->
             <div id="level-indicator" class="mb-4 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-2xl border border-orange-100">
-                <div class="text-sm text-gray-500 mb-1">Level Kamu Saat Ini</div>
+                <div class="flex items-center justify-center gap-1 text-sm text-gray-500 mb-1">Level Kamu Saat Ini <button onclick="showInfo('level')" class="text-orange-300 hover:text-orange-500" title="Info sistem level"><i class="fa-solid fa-circle-info text-xs"></i></button></div>
                 <div class="text-2xl font-bold text-orange-500" id="current-level-label">🔤 Level 1: Pengenalan Huruf</div>
                 <div class="text-xs text-gray-500 mt-1" id="current-level-hint">Capai akurasi 80% selama 3 sesi untuk naik ke Level 2</div>
             </div>
@@ -401,7 +418,7 @@
                             <i class="fa-solid fa-gear mr-1"></i> Opsi Lanjutan
                         </summary>
                         <div class="mt-3 space-y-2">
-                            <button onclick="if(confirm('Yakin ingin melewati skrining? Anak akan mulai dari level Mudah tanpa profiling.')) { skipAssessment(); }" class="w-full text-left bg-white border border-gray-200 hover:border-yellow-300 hover:bg-yellow-50 px-3 py-2 rounded-lg transition">
+                            <button onclick="if(confirm('Yakin ingin melewati skrining? Anak akan mulai dari Level 1 (Pengenalan Huruf).')) { skipAssessment(); }" class="w-full text-left bg-white border border-gray-200 hover:border-yellow-300 hover:bg-yellow-50 px-3 py-2 rounded-lg transition">
                                 <i class="fa-solid fa-forward text-yellow-500 mr-1"></i>
                                 <span class="font-semibold">Lewati Skrining</span>
                                 <div class="text-gray-500 text-[10px] mt-0.5">Hanya jika anak sudah diuji secara manual</div>
@@ -433,7 +450,7 @@
                         <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Pendekatan Multisensori:</strong> Anak belajar dengan melihat visual, mendengar audio (Text-to-Speech), dan menyentuh layar secara bersamaan untuk memperkuat memori otak.</div></li>
                         <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Font OpenDyslexic:</strong> Huruf dirancang memiliki 'pemberat' di bagian bawah agar tidak terlihat berputar atau terbalik saat dibaca penderita disleksia.</div></li>
                         <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Generatif AI:</strong> Menggunakan kecerdasan buatan untuk menciptakan materi pembelajaran yang tidak terbatas (soal cerita & kalimat baru) agar anak tidak bosan.</div></li>
-                        <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Adaptive Learning:</strong> Sistem otomatis menyesuaikan tingkat kesulitan materi berdasarkan capaian belajar anak, dari Level 1 (Pengenalan Huruf) hingga Level 6 (Kelancaran Membaca).</div></li>
+                        <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Adaptive Learning:</strong> Sistem otomatis menyesuaikan level materi berdasarkan capaian belajar anak, dari Level 1 (Pengenalan Huruf) hingga Level 6 (Kelancaran Membaca).</div></li>
                         <li class="flex gap-3 items-start"><i class="fa-solid fa-check text-green-500 mt-1"></i> <div><strong>Asisten Suara Interaktif:</strong> Mampu merekam suara anak (Speech-to-Text) untuk mengevaluasi ketepatan membaca secara otomatis (Khusus browser yang mendukung).</div></li>
                     </ul>
                 </div>
@@ -474,8 +491,7 @@
         <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-pop">
             <div class="text-6xl mb-4">🎉</div>
             <h3 class="text-2xl font-bold text-orange-500 mb-2">Level Naik!</h3>
-            <p class="text-gray-600 mb-4">Kamu sekarang di level</p>
-            <div id="new-level-display" class="text-3xl font-bold text-brand-blue mb-6">🌟 Sedang</div>
+            <div id="new-level-display" class="text-2xl font-bold text-brand-blue mb-6">Kamu sekarang di Level 1: Pengenalan Huruf</div>
             <p class="text-gray-500 mb-6 text-sm">Soal-soal akan jadi lebih menantang. Semangat!</p>
             <button onclick="closeModal('level-up-modal')" class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Lanjut Belajar</button>
         </div>
@@ -497,6 +513,19 @@
     <script src="js/math.js"></script>
     <script src="js/progress.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Info Detail Modal: dipanggil dari showInfo(key) di utils.js -->
+    <div id="info-detail-modal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full animate-pop max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="info-detail-title" class="text-lg font-bold text-brand-blue"></h3>
+                <button onclick="closeModal('info-detail-modal')" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fa-solid fa-times text-lg"></i>
+                </button>
+            </div>
+            <div id="info-detail-body" class="text-sm text-gray-600 leading-relaxed space-y-3"></div>
+        </div>
+    </div>
 
 </body>
 </html>

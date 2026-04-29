@@ -4,6 +4,10 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Kontrol visibilitas modul sesuai flag di config.js
+    if (SHOW_DISGRAFIA_MODUL)   document.getElementById('card-menulis').classList.remove('hidden');
+    if (SHOW_DISKALKULIA_MODUL) document.getElementById('card-berhitung').classList.remove('hidden');
+
     // Load data tersimpan
     loadProgress();
     loadLevel();
