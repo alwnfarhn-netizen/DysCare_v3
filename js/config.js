@@ -37,35 +37,35 @@ const LEVEL_CONFIG = {
             subtitle: 'Identifikasi A-Z, bedakan b/d, p/q, m/w, u/n',
             emoji: '🔤',
             color: 'blue',
-            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 2'
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 2: Kesadaran Fonologis'
         },
         2: {
             name: 'Kesadaran Fonologis',
             subtitle: 'Bunyi huruf, fonem awal, tengah, dan akhir',
             emoji: '👂',
             color: 'green',
-            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 3'
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 3: Korespondensi Grafem-Fonem'
         },
         3: {
             name: 'Korespondensi Grafem-Fonem',
             subtitle: 'Hubungan huruf dan bunyi: fonem ke grafem',
             emoji: '🔊',
             color: 'yellow',
-            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 4'
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 4: Blending Suku Kata'
         },
         4: {
             name: 'Blending Suku Kata',
             subtitle: 'Menggabungkan suku kata: KV-KV, KVK',
             emoji: '📝',
             color: 'orange',
-            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 5'
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 5: Membaca Kata'
         },
         5: {
             name: 'Membaca Kata',
             subtitle: 'Membaca kata bermakna dalam konteks kalimat',
             emoji: '📖',
             color: 'red',
-            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 6'
+            hint: 'Capai akurasi 80% selama 3 sesi untuk naik ke Level 6: Kelancaran Membaca'
         },
         6: {
             name: 'Kelancaran Membaca',
