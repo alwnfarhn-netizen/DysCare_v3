@@ -121,7 +121,7 @@ const INFO_CONTENT = {
             👂 Auditory: Text-to-Speech<br>
             ✋ Kinesthetic: rekam suara<br>
             🤚 Tactile: tap layar</p>
-            <p class="text-xs text-gray-400 mt-2">Fitur Rekam hanya tersedia di Google Chrome.</p>
+            <p class="text-xs text-gray-400 mt-2">Fitur Rekam didukung Chrome, Edge, dan Safari 14.5+. Di Firefox, tersedia mode evaluasi manual oleh guru.</p>
         `
     },
     mengeja: {
