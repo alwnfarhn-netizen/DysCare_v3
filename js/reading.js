@@ -3,32 +3,32 @@
    Mengimplementasikan adaptive difficulty via level.js
    ========================================================================== */
 
+// Data level sesuai level aktif anak (ambil dari state/localStorage)
+const dataPerLevel = {
+  1: { level:1, namaLevel:"Pengenalan Huruf",      polaKata:"Huruf tunggal vokal dan konsonan", daftarKata:"a, i, u, e, o, b, d, m, n",            panjang:"1 kalimat",   tema:"hewan" },
+  2: { level:2, namaLevel:"Kesadaran Fonologis",   polaKata:"Suku kata KV",                    daftarKata:"ba, bi, bo, da, di, ma, mi, na, ni",    panjang:"2 kalimat",   tema:"keluarga" },
+  3: { level:3, namaLevel:"Grafem-Fonem",          polaKata:"Kata KV-KV sederhana",            daftarKata:"bola, kaki, mata, sapi, buku, dada",    panjang:"2-3 kalimat", tema:"sekolah" },
+  4: { level:4, namaLevel:"Blending Suku Kata",    polaKata:"Kata 2 suku kata KV-KVK",         daftarKata:"batu, makan, tidur, duduk, minum",      panjang:"3-4 kalimat", tema:"bermain" },
+  5: { level:5, namaLevel:"Membaca Kata",          polaKata:"Kata frekuensi tinggi SD kelas 1", daftarKata:"semua kata level 3 dan 4 digabung",    panjang:"4-5 kalimat", tema:"makanan" },
+  6: { level:6, namaLevel:"Kelancaran Membaca",    polaKata:"Kalimat lengkap S-P-O",            daftarKata:"semua kata frekuensi tinggi",           panjang:"5-8 kalimat", tema:"kegiatan sehari-hari" },
+};
+
 async function loadReadingContent() {
     const contentArea = document.getElementById('reading-content');
     const feedbackArea = document.getElementById('reading-feedback');
 
     feedbackArea.innerHTML = "";
+    contentArea.innerHTML = '<span class="text-gray-400 text-lg animate-pulse">Menyiapkan bacaan...</span>';
 
-    // Ambil kalimat dari pool SESUAI LEVEL
-    const sentencesPool = getReadingSentencesByLevel();
+    const levelAktif = appState.currentLevel || 1;
+    const nomorSesi = (appState.progress.reading || 0) + 1;
 
-    // 30% kemungkinan memakai AI (jika API key tersedia), 70% pakai data lokal
-    const useAI = Math.random() > 0.7 && API_KEY;
+    const levelData = dataPerLevel[levelAktif] || dataPerLevel[1];
+    
+    // Gunakan fungsi generateCeritaAI dari ai-service.js
+    const teks = await generateCeritaAI(levelData, nomorSesi);
 
-    if (useAI) {
-        contentArea.innerHTML = '<span class="text-gray-400 text-lg animate-pulse">🤖 Sedang membuat kalimat baru...</span>';
-
-        const basePrompt = "Buatkan satu kalimat {LEVEL} bahasa Indonesia untuk latihan membaca. Hanya kalimat saja, tanpa tanda petik, tanpa penjelasan tambahan.";
-        const prompt = getLevelAwarePrompt(basePrompt);
-
-        const aiText = await generateAIContent(prompt);
-
-        appState.reading.currentSentence = aiText
-            ? aiText.trim().replace(/["""']/g, '')
-            : randomFromArray(sentencesPool);
-    } else {
-        appState.reading.currentSentence = randomFromArray(sentencesPool);
-    }
+    appState.reading.currentSentence = teks;
 
     // Render kalimat sebagai span per kata (untuk highlight nanti)
     contentArea.innerHTML = appState.reading.currentSentence

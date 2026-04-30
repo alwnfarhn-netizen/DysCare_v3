@@ -36,34 +36,35 @@ function updateProgressUI() {
  * Referensi: Farhah et al. (2025) tentang AI-powered learning analytics
  * dalam pendidikan khusus.
  */
-async function generateProgressAdvice() {
+async function tampilkanSaranCerdas() {
     const container = document.getElementById('ai-advice-container');
-    const textElem  = document.getElementById('ai-advice-text');
+    const textElem  = document.getElementById('saran-cerdas-text');
 
     container.classList.remove('hidden');
-    textElem.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> AI sedang menganalisis nilaimu...';
+    textElem.textContent = "Menganalisis progres...";
 
-    const p         = appState.progress;
-    const levelInfo = LEVEL_CONFIG.LABELS[appState.currentLevel];
-    const pass      = appState.sessionTracker.consecutivePass;
-    const req       = LEVEL_CONFIG.CONSECUTIVE_SESSIONS_REQUIRED;
+    const levelAktif = appState.currentLevel || 1;
+    const namaLevel = LEVEL_CONFIG && LEVEL_CONFIG.LABELS && LEVEL_CONFIG.LABELS[levelAktif] 
+        ? LEVEL_CONFIG.LABELS[levelAktif].name 
+        : `Level ${levelAktif}`;
+        
+    const attempts = appState.sessionTracker.attempts || 0;
+    const correct = appState.sessionTracker.correct || 0;
+    const akurasiSesiTerakhir = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
+    
+    const sesiLulusBerturut = appState.sessionTracker.consecutivePass || 0;
+    const totalSesiHariIni = appState.sessionTracker.history ? appState.sessionTracker.history.length : 0;
 
-    const prompt = `Saya adalah asisten pendidikan untuk anak disleksia.
-Data anak saat ini:
-- Level: ${appState.currentLevel} (${levelInfo.name} - ${levelInfo.subtitle})
-- Latihan Membaca: ${p.reading} latihan selesai
-- Latihan Mengeja: ${p.spelling} latihan selesai
-- Sesi lulus berturut-turut: ${pass} dari ${req} yang dibutuhkan untuk naik level
+    const performa = {
+        level:         levelAktif,
+        namaLevel:     namaLevel,
+        akurasi:       akurasiSesiTerakhir,
+        sesiLulus:     sesiLulusBerturut,
+        itemSalah:     "huruf/kata yang baru dipelajari", // Placeholder karena belum track item secara spesifik
+        polaKesalahan: "butuh lebih banyak latihan pengulangan", // Placeholder
+        totalSesi:     totalSesiHariIni
+    };
 
-Berikan 1-2 kalimat saran yang spesifik, memotivasi, dan ramah anak.
-Sebutkan modul mana yang perlu lebih banyak latihan.
-Bahasa Indonesia yang santai dan menyenangkan untuk anak SD kelas 1-3.`;
-
-    const advice = await generateAIContent(prompt);
-
-    if (advice) {
-        textElem.innerText = advice.trim();
-    } else {
-        textElem.innerText = "Teruslah berlatih! Setiap latihan membuat kamu semakin hebat dalam membaca.";
-    }
+    const saran = await generateSaranCerdas(performa);
+    textElem.textContent = saran;
 }
