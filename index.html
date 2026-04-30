@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="dyscare-ai-key" content="AIzaSyAW2F4Joo-vSfq-uUtO-QoOHx4AZCEwatA">
+    <meta name="dyscare-ai-key" content="AIzaSyBpJvnYhjU88esB-NMCptYUElh3TkWnEhM">
     <title>DysCare - Media Pembelajaran Membaca Permulaan untuk Anak Disleksia</title>
 
     <!-- Tailwind CSS -->
@@ -39,6 +40,7 @@
     <script src="ai-config.js"></script>
     <script src="ai-service.js"></script>
 </head>
+
 <body class="bg-brand-white text-gray-800 antialiased" style="font-size: 16px;">
 
     <!-- Background Animasi: Angka & Huruf -->
@@ -56,46 +58,64 @@
     <div id="app" class="container mx-auto p-4 max-w-4xl min-h-screen flex flex-col justify-center relative z-10">
 
         <!-- Header -->
-        <header id="app-header" class="hidden mb-6 flex justify-between items-center bg-white p-4 rounded-2xl shadow-lg border border-gray-200">
-            <button onclick="navigateTo('home-screen')" class="text-brand-blue hover:text-brand-bluehover font-bold text-lg flex items-center gap-2">
+        <header id="app-header"
+            class="hidden mb-6 flex justify-between items-center bg-white p-4 rounded-2xl shadow-lg border border-gray-200">
+            <button onclick="navigateTo('home-screen')"
+                class="text-brand-blue hover:text-brand-bluehover font-bold text-lg flex items-center gap-2">
                 <i class="fa-solid fa-house"></i> Beranda
             </button>
             <div class="flex gap-3">
-                <button onclick="toggleAccessibilityPanel()" class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full text-gray-600 transition" title="Pengaturan Aksesibilitas">
+                <button onclick="toggleAccessibilityPanel()"
+                    class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full text-gray-600 transition"
+                    title="Pengaturan Aksesibilitas">
                     <i class="fa-solid fa-universal-access text-xl"></i>
                 </button>
             </div>
         </header>
 
         <!-- Accessibility Panel -->
-        <div id="accessibility-panel" class="hidden fixed top-20 right-4 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white w-80 z-50 transform transition-all duration-300 max-h-[85vh] overflow-y-auto">
+        <div id="accessibility-panel"
+            class="hidden fixed top-20 right-4 bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white w-80 z-50 transform transition-all duration-300 max-h-[85vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-2">
                     <h3 class="font-bold text-xl text-gray-700 tracking-tight">Aksesibilitas</h3>
-                    <button onclick="showInfo('aksesibilitas')" class="text-gray-400 hover:text-gray-600 transition" title="Info aksesibilitas"><i class="fa-solid fa-circle-info"></i></button>
+                    <button onclick="showInfo('aksesibilitas')" class="text-gray-400 hover:text-gray-600 transition"
+                        title="Info aksesibilitas"><i class="fa-solid fa-circle-info"></i></button>
                 </div>
-                <button onclick="toggleAccessibilityPanel()" class="text-gray-400 hover:text-gray-600 transition"><i class="fa-solid fa-times text-lg"></i></button>
+                <button onclick="toggleAccessibilityPanel()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fa-solid fa-times text-lg"></i></button>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                <button id="btn-acc-font" class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
-                    <span id="icon-acc-font" class="text-3xl mb-2 font-bold text-gray-600 font-sans tracking-tight">Df</span>
+                <button id="btn-acc-font"
+                    class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
+                    <span id="icon-acc-font"
+                        class="text-3xl mb-2 font-bold text-gray-600 font-sans tracking-tight">Df</span>
                     <span class="text-xs font-bold text-gray-700">Font Disleksia</span>
                 </button>
 
-                <button id="btn-acc-size" class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
-                    <span id="icon-acc-size" class="text-2xl mb-2 text-gray-600"><i class="fa-solid fa-text-height"></i></span>
-                    <span class="text-xs font-bold text-gray-700">Ukuran Teks<br><span id="lbl-acc-size" class="font-normal text-[10px] text-gray-500">Normal</span></span>
+                <button id="btn-acc-size"
+                    class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
+                    <span id="icon-acc-size" class="text-2xl mb-2 text-gray-600"><i
+                            class="fa-solid fa-text-height"></i></span>
+                    <span class="text-xs font-bold text-gray-700">Ukuran Teks<br><span id="lbl-acc-size"
+                            class="font-normal text-[10px] text-gray-500">Normal</span></span>
                 </button>
 
-                <button id="btn-acc-contrast" class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
-                    <span id="icon-acc-contrast" class="text-2xl mb-2 text-gray-600"><i class="fa-solid fa-circle-half-stroke"></i></span>
-                    <span class="text-xs font-bold text-gray-700">Kontras<br><span id="lbl-acc-contrast" class="font-normal text-[10px] text-gray-500">Normal</span></span>
+                <button id="btn-acc-contrast"
+                    class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
+                    <span id="icon-acc-contrast" class="text-2xl mb-2 text-gray-600"><i
+                            class="fa-solid fa-circle-half-stroke"></i></span>
+                    <span class="text-xs font-bold text-gray-700">Kontras<br><span id="lbl-acc-contrast"
+                            class="font-normal text-[10px] text-gray-500">Normal</span></span>
                 </button>
 
-                <button id="btn-acc-brightness" class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
-                    <span id="icon-acc-bright" class="text-2xl mb-2 text-gray-600"><i class="fa-solid fa-sun"></i></span>
-                    <span class="text-xs font-bold text-gray-700">Kecerahan<br><span id="lbl-acc-bright" class="font-normal text-[10px] text-gray-500">Normal</span></span>
+                <button id="btn-acc-brightness"
+                    class="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-blue transition-all text-center">
+                    <span id="icon-acc-bright" class="text-2xl mb-2 text-gray-600"><i
+                            class="fa-solid fa-sun"></i></span>
+                    <span class="text-xs font-bold text-gray-700">Kecerahan<br><span id="lbl-acc-bright"
+                            class="font-normal text-[10px] text-gray-500">Normal</span></span>
                 </button>
             </div>
         </div>
@@ -105,10 +125,14 @@
         <!-- 1. Home Screen -->
         <div id="home-screen" class="screen-content text-center animate-fade-in relative">
             <div class="absolute top-0 right-0 flex gap-3 z-20">
-                <button onclick="navigateTo('user-guide-screen')" class="bg-white p-3 rounded-full shadow-lg text-brand-blue hover:text-brand-bluehover hover:bg-blue-50 transition border border-blue-100 group" title="Panduan & Info">
+                <button onclick="navigateTo('user-guide-screen')"
+                    class="bg-white p-3 rounded-full shadow-lg text-brand-blue hover:text-brand-bluehover hover:bg-blue-50 transition border border-blue-100 group"
+                    title="Panduan & Info">
                     <i class="fa-solid fa-circle-info text-2xl group-hover:scale-110 transition-transform"></i>
                 </button>
-                <button onclick="toggleAccessibilityPanel()" class="bg-white p-3 rounded-full shadow-lg text-brand-yellow hover:text-brand-yellowhover hover:bg-yellow-50 transition border border-yellow-100 group" title="Aksesibilitas">
+                <button onclick="toggleAccessibilityPanel()"
+                    class="bg-white p-3 rounded-full shadow-lg text-brand-yellow hover:text-brand-yellowhover hover:bg-yellow-50 transition border border-yellow-100 group"
+                    title="Aksesibilitas">
                     <i class="fa-solid fa-universal-access text-2xl group-hover:scale-110 transition-transform"></i>
                 </button>
             </div>
@@ -119,7 +143,8 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                <div onclick="navigateTo('reading-screen')" class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-blue-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <div onclick="navigateTo('reading-screen')"
+                    class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-blue-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-blue-100 p-4 rounded-full mb-4 group-hover:bg-blue-200 transition">
                         <i class="fa-solid fa-book-open text-4xl text-brand-blue"></i>
                     </div>
@@ -131,7 +156,8 @@
                      Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia).
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISGRAFIA_MODUL = true di js/config.js -->
-                <div id="card-menulis" onclick="navigateTo('writing-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <div id="card-menulis" onclick="navigateTo('writing-screen')"
+                    class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-red-100 p-4 rounded-full mb-4 group-hover:bg-red-200 transition">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
@@ -139,7 +165,8 @@
                     <p class="text-sm text-gray-400 mt-1">Latihan Disgrafia</p>
                 </div>
 
-                <div onclick="navigateTo('spelling-screen')" class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <div onclick="navigateTo('spelling-screen')"
+                    class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
                         <i class="fa-solid fa-shapes text-4xl text-green-500"></i>
                     </div>
@@ -152,7 +179,8 @@
                      Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia).
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISKALKULIA_MODUL = true di js/config.js -->
-                <div id="card-berhitung" onclick="navigateTo('math-screen')" class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
+                <div id="card-berhitung" onclick="navigateTo('math-screen')"
+                    class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
                     <div class="bg-purple-100 p-4 rounded-full mb-4 group-hover:bg-purple-200 transition">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
@@ -161,13 +189,15 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
-                    <div onclick="navigateTo('progress-screen')" class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-orange-200 cursor-pointer flex flex-col items-center justify-center group h-32">
+                    <div onclick="navigateTo('progress-screen')"
+                        class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-orange-200 cursor-pointer flex flex-col items-center justify-center group h-32">
                         <div class="bg-orange-100 p-2 rounded-full mb-2 group-hover:bg-orange-200 transition">
                             <i class="fa-solid fa-trophy text-xl text-orange-500"></i>
                         </div>
                         <h2 class="font-bold text-gray-700">Capaian</h2>
                     </div>
-                    <div onclick="navigateTo('profile-screen')" class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-pink-200 cursor-pointer flex flex-col items-center justify-center group h-32">
+                    <div onclick="navigateTo('profile-screen')"
+                        class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-pink-200 cursor-pointer flex flex-col items-center justify-center group h-32">
                         <div class="bg-pink-100 p-2 rounded-full mb-2 group-hover:bg-pink-200 transition">
                             <i class="fa-solid fa-user-circle text-xl text-pink-500"></i>
                         </div>
@@ -182,9 +212,13 @@
 
             <!-- Header kecil -->
             <div class="text-center mb-6">
-                <div class="inline-flex items-center gap-1 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-2">SKRINING AWAL<button onclick="showInfo('skrining')" class="text-white/80 hover:text-white" title="Info skrining"><i class="fa-solid fa-circle-info text-sm"></i></button></div>
+                <div
+                    class="inline-flex items-center gap-1 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-2">
+                    SKRINING AWAL<button onclick="showInfo('skrining')" class="text-white/80 hover:text-white"
+                        title="Info skrining"><i class="fa-solid fa-circle-info text-sm"></i></button></div>
                 <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mb-1">Halo, Ayo Kenalan Dulu!</h2>
-                <p class="text-gray-500 text-sm">Jawab beberapa soal singkat agar kami bisa siapkan latihan yang tepat untukmu.</p>
+                <p class="text-gray-500 text-sm">Jawab beberapa soal singkat agar kami bisa siapkan latihan yang tepat
+                    untukmu.</p>
             </div>
 
             <!-- Progress bar -->
@@ -194,7 +228,8 @@
                     <span id="assessment-progress-percent"></span>
                 </div>
                 <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                    <div id="assessment-progress-bar" class="bg-brand-blue h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <div id="assessment-progress-bar" class="bg-brand-blue h-2 rounded-full transition-all duration-500"
+                        style="width: 0%"></div>
                 </div>
             </div>
 
@@ -205,13 +240,17 @@
         </div>
 
         <!-- 2. Reading Screen -->
-        <div id="reading-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
+        <div id="reading-screen"
+            class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-3">
                 <div class="flex items-center gap-2">
-                    <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca</h2>
-                    <button onclick="showInfo('membaca')" class="text-blue-400 hover:text-brand-blue transition" title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
+                    <h2 class="text-2xl font-bold text-brand-blue"><i class="fa-solid fa-book-open mr-2"></i> Membaca
+                    </h2>
+                    <button onclick="showInfo('membaca')" class="text-blue-400 hover:text-brand-blue transition"
+                        title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
                 </div>
-                <div class="bg-blue-50 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="reading-score">0</span></div>
+                <div class="bg-blue-50 text-brand-blue px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span
+                        id="reading-score">0</span></div>
             </div>
 
             <!-- Label VAKT: eksplisit untuk penilaian ahli media (Bab III proposal) -->
@@ -224,17 +263,23 @@
             </div>
 
             <div class="flex-grow flex flex-col items-center justify-center">
-                <div id="reading-content" class="text-2xl md:text-3xl text-center leading-relaxed mb-8 font-medium text-gray-700 transition-all p-4 rounded-xl">Menunggu materi...</div>
+                <div id="reading-content"
+                    class="text-2xl md:text-3xl text-center leading-relaxed mb-8 font-medium text-gray-700 transition-all p-4 rounded-xl">
+                    Menunggu materi...</div>
                 <div id="reading-controls" class="flex flex-wrap justify-center gap-4 w-full">
-                    <button id="btn-listen" class="main-button bg-blue-100 hover:bg-blue-200 text-brand-blue px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                    <button id="btn-listen"
+                        class="main-button bg-blue-100 hover:bg-blue-200 text-brand-blue px-6 py-3 rounded-xl font-bold flex items-center gap-2">
                         <i class="fa-solid fa-volume-high"></i> Dengar
-                        <span class="text-[10px] bg-blue-200 text-blue-700 px-1.5 py-0.5 rounded font-bold ml-1">A</span>
+                        <span
+                            class="text-[10px] bg-blue-200 text-blue-700 px-1.5 py-0.5 rounded font-bold ml-1">A</span>
                     </button>
-                    <button id="btn-speak" class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-200">
+                    <button id="btn-speak"
+                        class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-green-200">
                         <i class="fa-solid fa-microphone"></i> Baca (Rekam)
                         <span class="text-[10px] bg-green-700 text-white px-1.5 py-0.5 rounded font-bold ml-1">K</span>
                     </button>
-                    <button id="btn-next-reading" class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                    <button id="btn-next-reading"
+                        class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
                         Cerita AI <i class="fa-solid fa-wand-magic-sparkles ml-1"></i>
                     </button>
                 </div>
@@ -243,16 +288,23 @@
         </div>
 
         <!-- 3. Writing Screen -->
-        <div id="writing-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
+        <div id="writing-screen"
+            class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-red-600"><i class="fa-solid fa-pen-nib mr-2"></i> Menulis (Disgrafia)</h2>
-                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan Motorik Halus</div>
+                <h2 class="text-2xl font-bold text-red-600"><i class="fa-solid fa-pen-nib mr-2"></i> Menulis (Disgrafia)
+                </h2>
+                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan Motorik Halus
+                </div>
             </div>
 
             <div class="flex-grow flex flex-col items-center">
                 <div class="flex bg-gray-100 p-1 rounded-xl mb-6 shadow-sm border border-gray-200">
-                    <button id="btn-mode-abjad" class="px-6 py-2 rounded-lg font-bold bg-white text-red-600 shadow-sm transition">Abjad (A-Z)</button>
-                    <button id="btn-mode-angka" class="px-6 py-2 rounded-lg font-bold text-gray-500 hover:text-gray-700 transition">Angka (1-10)</button>
+                    <button id="btn-mode-abjad"
+                        class="px-6 py-2 rounded-lg font-bold bg-white text-red-600 shadow-sm transition">Abjad
+                        (A-Z)</button>
+                    <button id="btn-mode-angka"
+                        class="px-6 py-2 rounded-lg font-bold text-gray-500 hover:text-gray-700 transition">Angka
+                        (1-10)</button>
                 </div>
                 <p class="text-gray-500 mb-4 text-center">Tebalkan atau tiru pola di bawah ini:</p>
 
@@ -262,31 +314,39 @@
                 </div>
 
                 <div class="flex gap-4 flex-wrap justify-center">
-                    <button id="btn-undo-canvas" class="main-button bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                    <button id="btn-undo-canvas"
+                        class="main-button bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
                         <i class="fa-solid fa-rotate-left"></i> Undo
                     </button>
-                    <button id="btn-clear-canvas" class="main-button bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                    <button id="btn-clear-canvas"
+                        class="main-button bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
                         <i class="fa-solid fa-eraser"></i> Hapus
                     </button>
-                    <button id="btn-next-letter" class="main-button bg-brand-blue hover:bg-brand-bluehover text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-200">
+                    <button id="btn-next-letter"
+                        class="main-button bg-brand-blue hover:bg-brand-bluehover text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-200">
                         Huruf Lanjut <i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    <button id="btn-check-writing" class="main-button bg-brand-yellow hover:bg-brand-yellowhover text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                    <button id="btn-check-writing"
+                        class="main-button bg-brand-yellow hover:bg-brand-yellowhover text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
                         Cek Tulisan ✨
                     </button>
                 </div>
-                <div id="writing-feedback" class="mt-4 p-3 bg-white rounded-xl shadow-sm border border-gray-200 text-center hidden"></div>
+                <div id="writing-feedback"
+                    class="mt-4 p-3 bg-white rounded-xl shadow-sm border border-gray-200 text-center hidden"></div>
             </div>
         </div>
 
         <!-- 4. Spelling Screen -->
-        <div id="spelling-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
+        <div id="spelling-screen"
+            class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-3">
                 <div class="flex items-center gap-2">
                     <h2 class="text-2xl font-bold text-green-600"><i class="fa-solid fa-shapes mr-2"></i> Mengeja</h2>
-                    <button onclick="showInfo('mengeja')" class="text-green-400 hover:text-green-600 transition" title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
+                    <button onclick="showInfo('mengeja')" class="text-green-400 hover:text-green-600 transition"
+                        title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
                 </div>
-                <div class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span id="spelling-score">0</span></div>
+                <div class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan: <span
+                        id="spelling-score">0</span></div>
             </div>
 
             <!-- Label VAKT: eksplisit untuk penilaian ahli media (Bab III proposal) -->
@@ -300,40 +360,58 @@
             <div class="flex-grow flex flex-col items-center">
                 <div id="spelling-image-container" class="spelling-image-placeholder mb-6 relative group">
                     <span class="text-gray-400 text-4xl"><i class="fa-regular fa-image"></i></span>
-                    <div id="image-loader" class="absolute inset-0 flex items-center justify-center bg-gray-50 hidden"><div class="loader border-t-green-500"></div></div>
+                    <div id="image-loader" class="absolute inset-0 flex items-center justify-center bg-gray-50 hidden">
+                        <div class="loader border-t-green-500"></div>
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-3 mb-4">
                     <p class="text-gray-500 text-lg m-0">Susun huruf untuk kata:</p>
-                    <button id="btn-spell-listen" class="bg-blue-100 hover:bg-blue-200 text-brand-blue p-2 rounded-full transition w-10 h-10 flex items-center justify-center" title="Dengarkan Kata">
+                    <button id="btn-spell-listen"
+                        class="bg-blue-100 hover:bg-blue-200 text-brand-blue p-2 rounded-full transition w-10 h-10 flex items-center justify-center"
+                        title="Dengarkan Kata">
                         <i class="fa-solid fa-volume-high"></i>
                     </button>
                 </div>
 
-                <div id="spelling-drop-zone" class="flex gap-2 mb-8 min-h-[4rem] p-2 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 items-center justify-center flex-wrap w-full"></div>
+                <div id="spelling-drop-zone"
+                    class="flex gap-2 mb-8 min-h-[4rem] p-2 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 items-center justify-center flex-wrap w-full">
+                </div>
                 <div id="letter-bank" class="flex gap-2 flex-wrap justify-center mb-8"></div>
                 <div id="spelling-feedback" class="h-12 flex items-center justify-center text-xl font-bold mb-4"></div>
                 <div class="flex gap-4 flex-wrap justify-center">
-                    <button id="btn-check-spelling" class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-green-200">Cek Jawaban</button>
-                    <button id="btn-next-spelling" class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold">Buat Gambar & Kata <i class="fa-solid fa-image ml-1"></i></button>
+                    <button id="btn-check-spelling"
+                        class="main-button bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-green-200">Cek
+                        Jawaban</button>
+                    <button id="btn-next-spelling"
+                        class="main-button bg-gray-100 hover:bg-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold">Buat
+                        Gambar & Kata <i class="fa-solid fa-image ml-1"></i></button>
                 </div>
             </div>
         </div>
 
         <!-- 5. Math Screen -->
-        <div id="math-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
+        <div id="math-screen"
+            class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-purple-600"><i class="fa-solid fa-calculator mr-2"></i> Berhitung (Diskalkulia)</h2>
-                <div class="bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">Skor: <span id="math-score">0</span></div>
+                <h2 class="text-2xl font-bold text-purple-600"><i class="fa-solid fa-calculator mr-2"></i> Berhitung
+                    (Diskalkulia)</h2>
+                <div class="bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">Skor: <span
+                        id="math-score">0</span></div>
             </div>
             <div class="flex-grow flex flex-col items-center justify-center">
                 <div id="math-problem-container" class="flex flex-col items-center gap-6 mb-8 w-full">
-                    <div class="flex items-center gap-4 text-3xl md:text-5xl font-bold text-gray-700 flex-wrap justify-center">
-                        <div id="math-visual-1" class="math-visual">🍎</div><span id="math-operator">+</span><div id="math-visual-2" class="math-visual">🍎</div><span>=</span>
-                        <div class="w-24 h-20 bg-gray-100 rounded-xl border-2 border-purple-200 flex items-center justify-center text-purple-600">?</div>
+                    <div
+                        class="flex items-center gap-4 text-3xl md:text-5xl font-bold text-gray-700 flex-wrap justify-center">
+                        <div id="math-visual-1" class="math-visual">🍎</div><span id="math-operator">+</span>
+                        <div id="math-visual-2" class="math-visual">🍎</div><span>=</span>
+                        <div
+                            class="w-24 h-20 bg-gray-100 rounded-xl border-2 border-purple-200 flex items-center justify-center text-purple-600">
+                            ?</div>
                     </div>
                     <p id="math-text-question" class="text-gray-500 text-lg">Berapa jumlah apel?</p>
-                    <button id="btn-math-story" class="mt-2 text-sm text-purple-600 hover:text-purple-800 underline bg-purple-50 px-3 py-1 rounded-full transition">
+                    <button id="btn-math-story"
+                        class="mt-2 text-sm text-purple-600 hover:text-purple-800 underline bg-purple-50 px-3 py-1 rounded-full transition">
                         ✨ Buat Soal Cerita
                     </button>
                 </div>
@@ -345,15 +423,22 @@
         <!-- 6. Progress Screen -->
         <div id="progress-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8">
             <div class="flex items-center justify-center gap-2 mb-6">
-                <h2 class="text-2xl font-bold text-orange-500"><i class="fa-solid fa-trophy mr-2"></i> Capaian Belajar</h2>
-                <button onclick="showInfo('capaian')" class="text-orange-400 hover:text-orange-600 transition" title="Info halaman ini"><i class="fa-solid fa-circle-info"></i></button>
+                <h2 class="text-2xl font-bold text-orange-500"><i class="fa-solid fa-trophy mr-2"></i> Capaian Belajar
+                </h2>
+                <button onclick="showInfo('capaian')" class="text-orange-400 hover:text-orange-600 transition"
+                    title="Info halaman ini"><i class="fa-solid fa-circle-info"></i></button>
             </div>
 
             <!-- Level Indicator: menampilkan level saat ini dari sistem 6-level -->
-            <div id="level-indicator" class="mb-4 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-2xl border border-orange-100">
-                <div class="flex items-center justify-center gap-1 text-sm text-gray-500 mb-1">Level Kamu Saat Ini <button onclick="showInfo('level')" class="text-orange-300 hover:text-orange-500" title="Info sistem level"><i class="fa-solid fa-circle-info text-xs"></i></button></div>
-                <div class="text-2xl font-bold text-orange-500" id="current-level-label">🔤 Level 1: Pengenalan Huruf</div>
-                <div class="text-xs text-gray-500 mt-1" id="current-level-hint">Capai akurasi 80% selama 3 sesi untuk naik ke Level 2</div>
+            <div id="level-indicator"
+                class="mb-4 text-center bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-2xl border border-orange-100">
+                <div class="flex items-center justify-center gap-1 text-sm text-gray-500 mb-1">Level Kamu Saat Ini
+                    <button onclick="showInfo('level')" class="text-orange-300 hover:text-orange-500"
+                        title="Info sistem level"><i class="fa-solid fa-circle-info text-xs"></i></button></div>
+                <div class="text-2xl font-bold text-orange-500" id="current-level-label">🔤 Level 1: Pengenalan Huruf
+                </div>
+                <div class="text-xs text-gray-500 mt-1" id="current-level-hint">Capai akurasi 80% selama 3 sesi untuk
+                    naik ke Level 2</div>
             </div>
 
             <!-- Sesi lulus berturut-turut (progress menuju naik level) -->
@@ -363,19 +448,29 @@
                     <span id="current-level-pass-count" class="font-bold text-orange-500">0/3</span>
                 </div>
                 <div class="w-full bg-orange-100 rounded-full h-2 mt-2">
-                    <div id="prog-bar-session" class="bg-orange-400 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
+                    <div id="prog-bar-session" class="bg-orange-400 h-2 rounded-full transition-all duration-700"
+                        style="width: 0%"></div>
                 </div>
                 <div class="text-[10px] text-gray-400 mt-1">Akurasi ≥80% per sesi diperlukan untuk naik level</div>
             </div>
 
             <div class="grid gap-4">
                 <div class="bg-blue-50 p-5 rounded-2xl">
-                    <div class="flex justify-between mb-2"><span class="font-bold text-brand-bluehover">Membaca</span><span id="prog-read-val" class="font-bold text-brand-bluehover">0 Latihan</span></div>
-                    <div class="w-full bg-blue-200 rounded-full h-3"><div id="prog-bar-read" class="bg-brand-blue h-3 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                    <div class="flex justify-between mb-2"><span
+                            class="font-bold text-brand-bluehover">Membaca</span><span id="prog-read-val"
+                            class="font-bold text-brand-bluehover">0 Latihan</span></div>
+                    <div class="w-full bg-blue-200 rounded-full h-3">
+                        <div id="prog-bar-read" class="bg-brand-blue h-3 rounded-full transition-all duration-1000"
+                            style="width: 0%"></div>
+                    </div>
                 </div>
                 <div class="bg-green-50 p-5 rounded-2xl">
-                    <div class="flex justify-between mb-2"><span class="font-bold text-green-700">Mengeja</span><span id="prog-spell-val" class="font-bold text-green-700">0 Latihan</span></div>
-                    <div class="w-full bg-green-200 rounded-full h-3"><div id="prog-bar-spell" class="bg-green-500 h-3 rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                    <div class="flex justify-between mb-2"><span class="font-bold text-green-700">Mengeja</span><span
+                            id="prog-spell-val" class="font-bold text-green-700">0 Latihan</span></div>
+                    <div class="w-full bg-green-200 rounded-full h-3">
+                        <div id="prog-bar-spell" class="bg-green-500 h-3 rounded-full transition-all duration-1000"
+                            style="width: 0%"></div>
+                    </div>
                 </div>
                 <!-- Elemen prog-math dipertahankan (hidden) untuk kompatibilitas dan future development -->
                 <div id="prog-math-val" class="hidden">0</div>
@@ -388,22 +483,31 @@
             </div>
 
             <div class="mt-8 text-center flex justify-center gap-4 flex-wrap">
-                <button onclick="tampilkanSaranCerdas()" class="bg-brand-yellow hover:bg-brand-yellowhover text-white font-bold px-4 py-2 rounded-lg transition shadow-sm flex items-center gap-2">
+                <button onclick="tampilkanSaranCerdas()"
+                    class="bg-brand-yellow hover:bg-brand-yellowhover text-white font-bold px-4 py-2 rounded-lg transition shadow-sm flex items-center gap-2">
                     <i class="fa-solid fa-lightbulb"></i> Saran Cerdas
                 </button>
-                <button onclick="resetProgressWithConfirmation()" class="text-red-400 hover:text-red-600 text-sm font-semibold border border-red-200 px-4 py-2 rounded-lg hover:bg-red-50 transition"><i class="fa-solid fa-trash mr-1"></i> Reset</button>
+                <button onclick="resetProgressWithConfirmation()"
+                    class="text-red-400 hover:text-red-600 text-sm font-semibold border border-red-200 px-4 py-2 rounded-lg hover:bg-red-50 transition"><i
+                        class="fa-solid fa-trash mr-1"></i> Reset</button>
             </div>
         </div>
 
         <!-- 7. Profile Screen -->
-        <div id="profile-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center">
-            <div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mb-4"><i class="fa-solid fa-user text-4xl text-pink-500"></i></div>
+        <div id="profile-screen"
+            class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center">
+            <div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mb-4"><i
+                    class="fa-solid fa-user text-4xl text-pink-500"></i></div>
             <h2 class="text-2xl font-bold text-gray-700 mb-6">Profil Saya</h2>
             <div class="w-full max-w-md">
                 <label class="block text-gray-600 mb-2 font-semibold">Nama Panggilan</label>
-                <input id="profile-name-input" type="text" placeholder="Masukkan namamu..." class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 mb-4 text-center text-lg">
-                <button id="save-profile-btn" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-pink-200 transition mb-4">Simpan Profil</button>
-                <p id="profile-save-feedback" class="text-green-500 text-center hidden font-bold"><i class="fa-solid fa-check"></i> Tersimpan!</p>
+                <input id="profile-name-input" type="text" placeholder="Masukkan namamu..."
+                    class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300 mb-4 text-center text-lg">
+                <button id="save-profile-btn"
+                    class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-pink-200 transition mb-4">Simpan
+                    Profil</button>
+                <p id="profile-save-feedback" class="text-green-500 text-center hidden font-bold"><i
+                        class="fa-solid fa-check"></i> Tersimpan!</p>
 
                 <!-- Section untuk Dewasa (Guru/Orang Tua) -->
                 <div class="mt-8 border-t border-gray-200 pt-6">
@@ -423,10 +527,13 @@
                             <i class="fa-solid fa-gear mr-1"></i> Opsi Lanjutan
                         </summary>
                         <div class="mt-3 space-y-2">
-                            <button onclick="if(confirm('Yakin ingin melewati skrining? Anak akan mulai dari Level 1 (Pengenalan Huruf).')) { skipAssessment(); }" class="w-full text-left bg-white border border-gray-200 hover:border-yellow-300 hover:bg-yellow-50 px-3 py-2 rounded-lg transition">
+                            <button
+                                onclick="if(confirm('Yakin ingin melewati skrining? Anak akan mulai dari Level 1 (Pengenalan Huruf).')) { skipAssessment(); }"
+                                class="w-full text-left bg-white border border-gray-200 hover:border-yellow-300 hover:bg-yellow-50 px-3 py-2 rounded-lg transition">
                                 <i class="fa-solid fa-forward text-yellow-500 mr-1"></i>
                                 <span class="font-semibold">Lewati Skrining</span>
-                                <div class="text-gray-500 text-[10px] mt-0.5">Hanya jika anak sudah diuji secara manual</div>
+                                <div class="text-gray-500 text-[10px] mt-0.5">Hanya jika anak sudah diuji secara manual
+                                </div>
                             </button>
                         </div>
                     </details>
@@ -442,68 +549,95 @@
                 <div class="space-y-4 pb-4">
                     <!-- BAGIAN 1: MENGENAL DYSCARE -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>1. Apa itu DYSCARE?</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200 text-sm text-gray-600 space-y-4">
-                            <p>DYSCARE (Dynamic System for Children with Reading & Encoding) adalah media pembelajaran berbasis web yang dirancang khusus untuk membantu anak dengan disleksia meningkatkan keterampilan membaca permulaan. DYSCARE mengintegrasikan dua pendekatan utama:</p>
-                            
+                            <p>DYSCARE (Dynamic System for Children with Reading & Encoding) adalah media pembelajaran
+                                berbasis web yang dirancang khusus untuk membantu anak dengan disleksia meningkatkan
+                                keterampilan membaca permulaan. DYSCARE mengintegrasikan dua pendekatan utama:</p>
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
                                     <h5 class="font-bold text-brand-blue mb-1">Multisensori VAKT</h5>
-                                    <p class="text-xs">Anak belajar melalui empat jalur sensorik: Visual (melihat), Auditory (mendengar), Kinesthetic (bergerak), dan Tactile (meraba). Pendekatan ini efektif membantu anak disleksia yang mengalami hambatan memproses informasi melalui satu jalur saja.</p>
+                                    <p class="text-xs">Anak belajar melalui empat jalur sensorik: Visual (melihat),
+                                        Auditory (mendengar), Kinesthetic (bergerak), dan Tactile (meraba). Pendekatan
+                                        ini efektif membantu anak disleksia yang mengalami hambatan memproses informasi
+                                        melalui satu jalur saja.</p>
                                 </div>
                                 <div class="bg-green-50 p-3 rounded-lg border border-green-100">
                                     <h5 class="font-bold text-green-700 mb-1">Adaptive Learning</h5>
-                                    <p class="text-xs">Sistem DYSCARE otomatis menyesuaikan tingkat kesulitan materi berdasarkan capaian belajar anak. Anak hanya maju ke level berikutnya setelah menguasai level saat ini dengan akurasi &ge;80% selama 3 sesi berturut-turut.</p>
+                                    <p class="text-xs">Sistem DYSCARE otomatis menyesuaikan tingkat kesulitan materi
+                                        berdasarkan capaian belajar anak. Anak hanya maju ke level berikutnya setelah
+                                        menguasai level saat ini dengan akurasi &ge;80% selama 3 sesi berturut-turut.
+                                    </p>
                                 </div>
                             </div>
 
                             <h5 class="font-bold text-gray-700 mt-4 mb-2">Untuk Siapa DYSCARE?</h5>
                             <ul class="list-disc pl-5 space-y-1">
                                 <li>Anak usia 6–12 tahun (SD kelas 1–3) yang teridentifikasi disleksia</li>
-                                <li>Anak yang sering membalik huruf b/d atau p/q, lambat membaca, dan kesulitan menghubungkan huruf dengan bunyinya</li>
-                                <li>Anak di sekolah inklusif maupun SLB yang butuh intervensi membaca permulaan berbasis teknologi</li>
+                                <li>Anak yang sering membalik huruf b/d atau p/q, lambat membaca, dan kesulitan
+                                    menghubungkan huruf dengan bunyinya</li>
+                                <li>Anak di sekolah inklusif maupun SLB yang butuh intervensi membaca permulaan berbasis
+                                    teknologi</li>
                             </ul>
 
-                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-r-lg mt-4 text-xs font-medium">
-                                <i class="fa-solid fa-circle-exclamation mr-1"></i> DYSCARE bukan alat diagnosis. Penggunaan DYSCARE sebagai media intervensi tetap harus didampingi oleh guru atau pendamping yang memahami karakteristik disleksia.
+                            <div
+                                class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-r-lg mt-4 text-xs font-medium">
+                                <i class="fa-solid fa-circle-exclamation mr-1"></i> DYSCARE bukan alat diagnosis.
+                                Penggunaan DYSCARE sebagai media intervensi tetap harus didampingi oleh guru atau
+                                pendamping yang memahami karakteristik disleksia.
                             </div>
                         </div>
                     </details>
 
                     <!-- BAGIAN 2: APA YANG BISA DYSCARE BANTU -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>2. 6 Level Progresif DYSCARE</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
                                     <div class="text-xs font-bold text-brand-blue mb-1">Level 1: Pengenalan Huruf</div>
-                                    <div class="text-xs text-gray-600">Membedakan huruf A–Z, terutama huruf yang sering tertukar: b/d, p/q, m/w</div>
+                                    <div class="text-xs text-gray-600">Membedakan huruf A–Z, terutama huruf yang sering
+                                        tertukar: b/d, p/q, m/w</div>
                                 </div>
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
-                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 2: Kesadaran Fonologis</div>
-                                    <div class="text-xs text-gray-600">Mengenali bunyi, suku kata, dan rima dalam kata bahasa Indonesia</div>
+                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 2: Kesadaran Fonologis
+                                    </div>
+                                    <div class="text-xs text-gray-600">Mengenali bunyi, suku kata, dan rima dalam kata
+                                        bahasa Indonesia</div>
                                 </div>
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
-                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 3: Korespondensi Grafem-Fonem</div>
-                                    <div class="text-xs text-gray-600">Menghubungkan huruf (grafem) dengan bunyinya (fonem)</div>
+                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 3: Korespondensi
+                                        Grafem-Fonem</div>
+                                    <div class="text-xs text-gray-600">Menghubungkan huruf (grafem) dengan bunyinya
+                                        (fonem)</div>
                                 </div>
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
-                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 4: Blending Suku Kata</div>
-                                    <div class="text-xs text-gray-600">Menggabungkan suku kata menjadi kata bermakna (ba+tu = batu)</div>
+                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 4: Blending Suku Kata
+                                    </div>
+                                    <div class="text-xs text-gray-600">Menggabungkan suku kata menjadi kata bermakna
+                                        (ba+tu = batu)</div>
                                 </div>
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
                                     <div class="text-xs font-bold text-brand-blue mb-1">Level 5: Membaca Kata</div>
-                                    <div class="text-xs text-gray-600">Membaca kata-kata sederhana secara mandiri dengan decoding yang tepat</div>
+                                    <div class="text-xs text-gray-600">Membaca kata-kata sederhana secara mandiri dengan
+                                        decoding yang tepat</div>
                                 </div>
                                 <div class="border border-gray-100 rounded-lg p-3 shadow-sm">
-                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 6: Kelancaran Membaca</div>
-                                    <div class="text-xs text-gray-600">Membaca kalimat dan paragraf dengan lancar, akurat, dan ekspresif</div>
+                                    <div class="text-xs font-bold text-brand-blue mb-1">Level 6: Kelancaran Membaca
+                                    </div>
+                                    <div class="text-xs text-gray-600">Membaca kalimat dan paragraf dengan lancar,
+                                        akurat, dan ekspresif</div>
                                 </div>
                             </div>
                         </div>
@@ -511,9 +645,11 @@
 
                     <!-- BAGIAN 3: CARA MENGAKSES -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>3. Cara Mengakses DYSCARE</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200 text-sm text-gray-600 space-y-4">
                             <div>
@@ -525,20 +661,34 @@
                                     <li>Klik tombol "Mulai Belajar" untuk memulai sesi</li>
                                 </ol>
                             </div>
-                            
+
                             <div>
                                 <h5 class="font-bold text-gray-700 mb-2">Skrining Awal</h5>
-                                <p>Sebelum masuk ke modul utama, anak akan mengerjakan 12 soal skrining singkat untuk menentukan level awal yang sesuai. Skrining berlangsung sekitar 5–10 menit. Sistem otomatis menempatkan anak di level yang paling tepat berdasarkan hasil skrining.</p>
+                                <p>Sebelum masuk ke modul utama, anak akan mengerjakan 12 soal skrining singkat untuk
+                                    menentukan level awal yang sesuai. Skrining berlangsung sekitar 5–10 menit. Sistem
+                                    otomatis menempatkan anak di level yang paling tepat berdasarkan hasil skrining.</p>
                             </div>
 
                             <div>
                                 <h5 class="font-bold text-gray-700 mb-2">Persyaratan Akses</h5>
                                 <div class="overflow-hidden border border-gray-200 rounded-lg">
                                     <table class="min-w-full text-xs">
-                                        <tr class="border-b border-gray-200"><td class="p-2 bg-gray-50 font-bold w-1/3">Perangkat</td><td class="p-2">Komputer, laptop, tablet, atau smartphone</td></tr>
-                                        <tr class="border-b border-gray-200"><td class="p-2 bg-gray-50 font-bold">Browser</td><td class="p-2">Chrome, Firefox, Edge, Safari (versi terbaru)</td></tr>
-                                        <tr class="border-b border-gray-200"><td class="p-2 bg-gray-50 font-bold">Internet</td><td class="p-2">Koneksi minimal untuk streaming audio</td></tr>
-                                        <tr><td class="p-2 bg-gray-50 font-bold">Headset</td><td class="p-2">Dianjurkan untuk mengoptimalkan fitur Text-to-Speech</td></tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="p-2 bg-gray-50 font-bold w-1/3">Perangkat</td>
+                                            <td class="p-2">Komputer, laptop, tablet, atau smartphone</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="p-2 bg-gray-50 font-bold">Browser</td>
+                                            <td class="p-2">Chrome, Firefox, Edge, Safari (versi terbaru)</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="p-2 bg-gray-50 font-bold">Internet</td>
+                                            <td class="p-2">Koneksi minimal untuk streaming audio</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 bg-gray-50 font-bold">Headset</td>
+                                            <td class="p-2">Dianjurkan untuk mengoptimalkan fitur Text-to-Speech</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -547,38 +697,56 @@
 
                     <!-- BAGIAN 4: PANDUAN MODUL -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>4. Panduan Modul Pembelajaran</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200 text-sm text-gray-600 space-y-5">
                             <div>
-                                <h5 class="font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-book-open text-brand-blue"></i> Modul Membaca</h5>
+                                <h5 class="font-bold text-gray-700 mb-2 flex items-center gap-2"><i
+                                        class="fa-solid fa-book-open text-brand-blue"></i> Modul Membaca</h5>
                                 <ul class="space-y-1 mb-3">
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Teks bacaan ditampilkan dengan highlight per suku kata</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Text-to-Speech (TTS) membacakan teks dengan kecepatan adaptif</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Anak dapat merekam suara membaca untuk evaluasi mandiri</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Konten cerita dihasilkan AI sehingga selalu baru setiap sesi</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Bantuan TTS per kata tersedia dengan tap/klik pada kata tersebut</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Teks bacaan ditampilkan dengan highlight per suku kata</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Text-to-Speech (TTS) membacakan teks dengan kecepatan adaptif</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Anak dapat merekam suara membaca untuk evaluasi mandiri</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Konten cerita dihasilkan AI sehingga selalu baru setiap sesi</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Bantuan TTS per kata tersedia dengan tap/klik pada kata tersebut</span>
+                                    </li>
                                 </ul>
                                 <div class="bg-gray-50 rounded-lg p-3 text-xs border border-gray-200">
                                     <div class="font-bold mb-2 text-gray-700">Indikator VAKT di Modul Membaca:</div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                        <div><span class="font-bold text-brand-blue">V (Visual):</span> Word highlighting berwarna; font OpenDyslexic</div>
-                                        <div><span class="font-bold text-brand-blue">A (Auditory):</span> TTS melafalkan teks; konfirmasi audio benar/salah</div>
-                                        <div><span class="font-bold text-brand-blue">K (Kinesthetic):</span> Tap kata bantuan; scroll teks; jawab pemahaman</div>
-                                        <div><span class="font-bold text-brand-blue">T (Tactile):</span> Tap-tap ritme suku kata; swipe halaman</div>
+                                        <div><span class="font-bold text-brand-blue">V (Visual):</span> Word
+                                            highlighting berwarna; font OpenDyslexic</div>
+                                        <div><span class="font-bold text-brand-blue">A (Auditory):</span> TTS melafalkan
+                                            teks; konfirmasi audio benar/salah</div>
+                                        <div><span class="font-bold text-brand-blue">K (Kinesthetic):</span> Tap kata
+                                            bantuan; scroll teks; jawab pemahaman</div>
+                                        <div><span class="font-bold text-brand-blue">T (Tactile):</span> Tap-tap ritme
+                                            suku kata; swipe halaman</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="border-t border-gray-200 pt-4">
-                                <h5 class="font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-shapes text-green-600"></i> Modul Mengeja</h5>
+                                <h5 class="font-bold text-gray-700 mb-2 flex items-center gap-2"><i
+                                        class="fa-solid fa-shapes text-green-600"></i> Modul Mengeja</h5>
                                 <ul class="space-y-1">
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Anak menyusun kartu huruf menjadi kata dengan drag & drop</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Setiap huruf mengeluarkan bunyi fonem saat disentuh</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Soal baru dihasilkan AI sehingga anak tidak menghafal jawaban</span></li>
-                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i> <span>Umpan balik langsung setelah setiap jawaban</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Anak menyusun kartu huruf menjadi kata dengan drag & drop</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Setiap huruf mengeluarkan bunyi fonem saat disentuh</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Soal baru dihasilkan AI sehingga anak tidak menghafal jawaban</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                                        <span>Umpan balik langsung setelah setiap jawaban</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -586,57 +754,72 @@
 
                     <!-- BAGIAN 5: MEMANTAU PERKEMBANGAN -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>5. Memantau Perkembangan Anak</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200 text-sm text-gray-600 space-y-4">
                             <div>
                                 <h5 class="font-bold text-gray-700 mb-1">Halaman Capaian</h5>
-                                <p>Setiap anak memiliki halaman capaian yang menampilkan: Level aktif saat ini (Level 1–6), jumlah sesi lulus berturut-turut (dari 3 yang dibutuhkan), akurasi rata-rata per sesi, dan pola kesalahan yang sering muncul.</p>
+                                <p>Setiap anak memiliki halaman capaian yang menampilkan: Level aktif saat ini (Level
+                                    1–6), jumlah sesi lulus berturut-turut (dari 3 yang dibutuhkan), akurasi rata-rata
+                                    per sesi, dan pola kesalahan yang sering muncul.</p>
                             </div>
                             <div>
                                 <h5 class="font-bold text-gray-700 mb-1">Panel Guru / Orang Tua</h5>
-                                <p>Guru dan orang tua dapat memantau perkembangan anak melalui Panel Guru yang menampilkan data seluruh pengguna secara ringkas.</p>
+                                <p>Guru dan orang tua dapat memantau perkembangan anak melalui Panel Guru yang
+                                    menampilkan data seluruh pengguna secara ringkas.</p>
                             </div>
                             <div>
                                 <h5 class="font-bold text-gray-700 mb-1">Saran Cerdas AI</h5>
-                                <p>Fitur Saran Cerdas AI menganalisis pola kesalahan anak secara otomatis dan memberikan rekomendasi latihan yang spesifik untuk membantu pendamping mengetahui area yang perlu diperkuat.</p>
+                                <p>Fitur Saran Cerdas AI menganalisis pola kesalahan anak secara otomatis dan memberikan
+                                    rekomendasi latihan yang spesifik untuk membantu pendamping mengetahui area yang
+                                    perlu diperkuat.</p>
                             </div>
                         </div>
                     </details>
 
                     <!-- BAGIAN 6: FITUR AKSESIBILITAS -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>6. Fitur Aksesibilitas</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-4 bg-white border-t border-gray-200">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Font OpenDyslexic</div>
-                                    <div class="text-[11px] text-gray-500">Huruf khusus dengan pemberat di bagian bawah agar tidak terlihat terbalik saat dibaca</div>
+                                    <div class="text-[11px] text-gray-500">Huruf khusus dengan pemberat di bagian bawah
+                                        agar tidak terlihat terbalik saat dibaca</div>
                                 </div>
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Kontras Warna Tinggi</div>
-                                    <div class="text-[11px] text-gray-500">Teks gelap pada latar terang untuk memudahkan pembacaan</div>
+                                    <div class="text-[11px] text-gray-500">Teks gelap pada latar terang untuk memudahkan
+                                        pembacaan</div>
                                 </div>
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Ukuran Teks Besar</div>
-                                    <div class="text-[11px] text-gray-500">Teks berukuran besar (minimal 16pt) untuk mengurangi beban visual</div>
+                                    <div class="text-[11px] text-gray-500">Teks berukuran besar (minimal 16pt) untuk
+                                        mengurangi beban visual</div>
                                 </div>
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Text-to-Speech (TTS)</div>
-                                    <div class="text-[11px] text-gray-500">Semua teks dapat diperdengarkan secara otomatis</div>
+                                    <div class="text-[11px] text-gray-500">Semua teks dapat diperdengarkan secara
+                                        otomatis</div>
                                 </div>
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Navigasi Sederhana</div>
-                                    <div class="text-[11px] text-gray-500">Antarmuka minimalis, tombol besar, instruksi singkat dan jelas</div>
+                                    <div class="text-[11px] text-gray-500">Antarmuka minimalis, tombol besar, instruksi
+                                        singkat dan jelas</div>
                                 </div>
                                 <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
                                     <div class="font-bold text-gray-700 text-xs mb-1">Tanpa Instalasi</div>
-                                    <div class="text-[11px] text-gray-500">Langsung akses via browser tanpa perlu mengunduh aplikasi apapun</div>
+                                    <div class="text-[11px] text-gray-500">Langsung akses via browser tanpa perlu
+                                        mengunduh aplikasi apapun</div>
                                 </div>
                             </div>
                         </div>
@@ -644,75 +827,93 @@
 
                     <!-- BAGIAN 7: FAQ -->
                     <details class="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group">
-                        <summary class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
+                        <summary
+                            class="font-bold text-gray-700 p-4 cursor-pointer hover:bg-gray-100 transition flex justify-between items-center">
                             <span>7. Pertanyaan yang Sering Diajukan (FAQ)</span>
-                            <i class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                            <i
+                                class="fa-solid fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="bg-white border-t border-gray-200 text-sm text-gray-600">
                             <!-- Inner Accordions for FAQ -->
                             <details class="border-b border-gray-100 group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
                                     <span class="flex-1">Apakah DYSCARE bisa digunakan tanpa internet?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>DYSCARE membutuhkan koneksi internet untuk fitur Text-to-Speech dan Generatif AI. Namun halaman utama tetap dapat dimuat dengan koneksi yang lambat.</span>
+                                    <span>DYSCARE membutuhkan koneksi internet untuk fitur Text-to-Speech dan Generatif
+                                        AI. Namun halaman utama tetap dapat dimuat dengan koneksi yang lambat.</span>
                                 </div>
                             </details>
-                            
+
                             <details class="border-b border-gray-100 group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
                                     <span class="flex-1">Berapa lama satu sesi belajar yang ideal?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>Satu sesi DYSCARE idealnya berlangsung 15–20 menit untuk menjaga fokus anak. Tidak disarankan lebih dari 30 menit dalam satu sesi.</span>
+                                    <span>Satu sesi DYSCARE idealnya berlangsung 15–20 menit untuk menjaga fokus anak.
+                                        Tidak disarankan lebih dari 30 menit dalam satu sesi.</span>
                                 </div>
                             </details>
 
                             <details class="border-b border-gray-100 group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
                                     <span class="flex-1">Apakah anak bisa langsung menggunakan DYSCARE sendiri?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>DYSCARE dirancang agar anak dapat digunakan secara mandiri, namun pendampingan dari guru atau orang tua tetap sangat dianjurkan terutama pada sesi-sesi awal.</span>
+                                    <span>DYSCARE dirancang agar anak dapat digunakan secara mandiri, namun pendampingan
+                                        dari guru atau orang tua tetap sangat dianjurkan terutama pada sesi-sesi
+                                        awal.</span>
                                 </div>
                             </details>
 
                             <details class="border-b border-gray-100 group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
-                                    <span class="flex-1">Bagaimana jika anak tidak naik level setelah banyak sesi?</span>
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
+                                    <span class="flex-1">Bagaimana jika anak tidak naik level setelah banyak
+                                        sesi?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>Sistem akan terus menyajikan soal bervariasi di level yang sama. Guru dapat melihat pola kesalahan di Halaman Capaian dan menggunakan Saran Cerdas AI untuk strategi pendampingan.</span>
+                                    <span>Sistem akan terus menyajikan soal bervariasi di level yang sama. Guru dapat
+                                        melihat pola kesalahan di Halaman Capaian dan menggunakan Saran Cerdas AI untuk
+                                        strategi pendampingan.</span>
                                 </div>
                             </details>
 
                             <details class="border-b border-gray-100 group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
                                     <span class="flex-1">Apakah data belajar anak tersimpan?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>Data progres belajar disimpan di perangkat yang digunakan. Disarankan menggunakan perangkat yang sama setiap sesi agar data progres tidak terputus.</span>
+                                    <span>Data progres belajar disimpan di perangkat yang digunakan. Disarankan
+                                        menggunakan perangkat yang sama setiap sesi agar data progres tidak
+                                        terputus.</span>
                                 </div>
                             </details>
 
                             <details class="group/faq">
-                                <summary class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
-                                    <span class="text-brand-blue font-bold">Q:</span> 
+                                <summary
+                                    class="font-medium text-gray-700 p-3 cursor-pointer hover:bg-gray-50 flex gap-2">
+                                    <span class="text-brand-blue font-bold">Q:</span>
                                     <span class="flex-1">Apakah DYSCARE bisa digunakan di HP?</span>
                                 </summary>
                                 <div class="px-3 pb-3 pt-1 text-gray-500 ml-6 flex gap-2">
                                     <span class="font-bold">A:</span>
-                                    <span>Ya, DYSCARE responsif dan dapat diakses dari smartphone. Penggunaan tablet atau komputer lebih dianjurkan untuk pengalaman belajar yang optimal.</span>
+                                    <span>Ya, DYSCARE responsif dan dapat diakses dari smartphone. Penggunaan tablet
+                                        atau komputer lebih dianjurkan untuk pengalaman belajar yang optimal.</span>
                                 </div>
                             </details>
                         </div>
@@ -730,18 +931,22 @@
             <h3 class="text-xl font-bold text-gray-800 mb-2">Yakin reset data?</h3>
             <p class="text-gray-500 mb-6 text-sm">Semua skor dan capaianmu akan hilang dan kembali ke nol.</p>
             <div class="flex justify-center gap-3">
-                <button onclick="closeModal('confirm-modal')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold">Batal</button>
-                <button onclick="confirmResetProgress()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">Ya, Reset</button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold">Batal</button>
+                <button onclick="confirmResetProgress()"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">Ya, Reset</button>
             </div>
         </div>
     </div>
 
     <div id="info-modal" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full text-center animate-pop">
-            <div id="info-modal-icon" class="text-4xl mb-4 text-brand-blue"><i class="fa-solid fa-info-circle"></i></div>
+            <div id="info-modal-icon" class="text-4xl mb-4 text-brand-blue"><i class="fa-solid fa-info-circle"></i>
+            </div>
             <h3 id="info-modal-title" class="text-xl font-bold text-gray-800 mb-2">Info</h3>
             <p id="info-modal-message" class="text-gray-500 mb-6 text-sm">Pesan informasi.</p>
-            <button onclick="closeModal('info-modal')" class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Oke</button>
+            <button onclick="closeModal('info-modal')"
+                class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Oke</button>
         </div>
     </div>
 
@@ -750,9 +955,12 @@
         <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-pop">
             <div class="text-6xl mb-4">🎉</div>
             <h3 class="text-2xl font-bold text-orange-500 mb-2">Level Naik!</h3>
-            <div id="new-level-display" class="text-2xl font-bold text-brand-blue mb-6">Kamu sekarang di Level 1: Pengenalan Huruf</div>
+            <div id="new-level-display" class="text-2xl font-bold text-brand-blue mb-6">Kamu sekarang di Level 1:
+                Pengenalan Huruf</div>
             <p class="text-gray-500 mb-6 text-sm">Soal-soal akan jadi lebih menantang. Semangat!</p>
-            <button onclick="closeModal('level-up-modal')" class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Lanjut Belajar</button>
+            <button onclick="closeModal('level-up-modal')"
+                class="bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-2 rounded-lg font-semibold">Lanjut
+                Belajar</button>
         </div>
     </div>
 
@@ -787,4 +995,5 @@
     </div>
 
 </body>
+
 </html>
