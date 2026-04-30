@@ -9,7 +9,7 @@ const GEMINI_API_KEY = document
 
 const GEMINI_MODEL = "gemini-1.5-flash";
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 // Validasi key saat aplikasi dimuat
 if (!GEMINI_API_KEY) {
