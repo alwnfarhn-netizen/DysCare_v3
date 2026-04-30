@@ -7,8 +7,7 @@ const GEMINI_API_KEY = document
   .querySelector('meta[name="dyscare-ai-key"]')
   ?.getAttribute("content") ?? "";
 
-const GEMINI_MODEL = "gemini-1.5-flash-8b";
-
+const GEMINI_MODEL = "gemini-2.0-flash-lite";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 // Validasi key saat aplikasi dimuat
