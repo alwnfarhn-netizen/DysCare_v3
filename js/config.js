@@ -6,9 +6,9 @@
 const API_KEY = "";
 
 // Endpoint API Gemini (model: gemini-2.5-flash-preview-09-2025 dan imagen-4.0-generate-001)
-const TEXT_API_URL   = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
-const IMAGE_API_URL  = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${API_KEY}`;
-const VISION_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+const TEXT_API_URL   = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+const IMAGE_API_URL  = `https://generativelanguage.googleapis.com/v1/models/imagen-4.0-generate-001:predict?key=${API_KEY}`;
+const VISION_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
 
 /**
  * Konfigurasi Sistem 6 Level Adaptif DYSCARE.
