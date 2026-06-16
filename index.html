@@ -144,12 +144,13 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 <div onclick="navigateTo('reading-screen')"
-                    class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-blue-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
-                    <div class="bg-blue-100 p-4 rounded-full mb-4 group-hover:bg-blue-200 transition">
+                    class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-3xl shadow-lg shadow-blue-100/50 border border-blue-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-blue-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 z-10">
                         <i class="fa-solid fa-book-open text-4xl text-brand-blue"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-700">Membaca</h2>
-                    <p class="text-sm text-gray-400 mt-1">Latihan Disleksia</p>
+                    <h2 class="text-xl font-bold text-gray-800 z-10">Membaca</h2>
+                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Disleksia</p>
                 </div>
 
                 <!-- Modul Menulis: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
@@ -157,22 +158,23 @@
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISGRAFIA_MODUL = true di js/config.js -->
                 <div id="card-menulis" onclick="navigateTo('writing-screen')"
-                    class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
-                    <div class="bg-red-100 p-4 rounded-full mb-4 group-hover:bg-red-200 transition">
+                    class="hidden bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-3xl shadow-lg shadow-red-100/50 border border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-red-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-700">Menulis</h2>
-                    <p class="text-sm text-gray-400 mt-1">Latihan Disgrafia</p>
+                    <h2 class="text-xl font-bold text-gray-800 z-10">Menulis</h2>
+                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Disgrafia</p>
                 </div>
 
                 <div onclick="navigateTo('spelling-screen')"
-                    class="card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
-                    <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
+                    class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-3xl shadow-lg shadow-green-100/50 border border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-green-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 z-10">
                         <i class="fa-solid fa-shapes text-4xl text-green-500"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-700">Mengeja</h2>
-                    <p class="text-sm text-gray-400 mt-1">Susun Kata</p>
-                    <p class="text-xs text-gray-400 mt-1">Latihan fonologis &amp; grafem-fonem (Level 2–3)</p>
+                    <h2 class="text-xl font-bold text-gray-800 z-10">Mengeja</h2>
+                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Susun Kata Bergambar</p>
                 </div>
 
                 <!-- Modul Berhitung: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
@@ -180,28 +182,31 @@
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISKALKULIA_MODUL = true di js/config.js -->
                 <div id="card-berhitung" onclick="navigateTo('math-screen')"
-                    class="hidden card-hover bg-white p-6 rounded-3xl shadow-md border-b-4 border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group">
-                    <div class="bg-purple-100 p-4 rounded-full mb-4 group-hover:bg-purple-200 transition">
+                    class="hidden bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-3xl shadow-lg shadow-purple-100/50 border border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-purple-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-700">Berhitung</h2>
-                    <p class="text-sm text-gray-400 mt-1">Latihan Diskalkulia</p>
+                    <h2 class="text-xl font-bold text-gray-800 z-10">Berhitung</h2>
+                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Diskalkulia</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
                     <div onclick="navigateTo('progress-screen')"
-                        class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-orange-200 cursor-pointer flex flex-col items-center justify-center group h-32">
-                        <div class="bg-orange-100 p-2 rounded-full mb-2 group-hover:bg-orange-200 transition">
-                            <i class="fa-solid fa-trophy text-xl text-orange-500"></i>
+                        class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-3xl shadow-lg shadow-orange-100/50 border border-orange-200 cursor-pointer flex flex-col items-center justify-center group h-32 hover:shadow-xl hover:shadow-orange-200/50 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 -mt-2 -ml-2 w-16 h-16 bg-white opacity-30 rounded-full blur-lg group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="bg-white p-3 rounded-2xl shadow-sm mb-2 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 z-10">
+                            <i class="fa-solid fa-trophy text-2xl text-orange-500"></i>
                         </div>
-                        <h2 class="font-bold text-gray-700">Capaian</h2>
+                        <h2 class="font-bold text-gray-800 z-10">Capaian</h2>
                     </div>
                     <div onclick="navigateTo('profile-screen')"
-                        class="card-hover bg-white p-4 rounded-3xl shadow-md border-b-4 border-pink-200 cursor-pointer flex flex-col items-center justify-center group h-32">
-                        <div class="bg-pink-100 p-2 rounded-full mb-2 group-hover:bg-pink-200 transition">
-                            <i class="fa-solid fa-user-circle text-xl text-pink-500"></i>
+                        class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-3xl shadow-lg shadow-pink-100/50 border border-pink-200 cursor-pointer flex flex-col items-center justify-center group h-32 hover:shadow-xl hover:shadow-pink-200/50 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-30 rounded-full blur-lg group-hover:scale-150 transition-transform duration-500"></div>
+                        <div class="bg-white p-3 rounded-2xl shadow-sm mb-2 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 z-10">
+                            <i class="fa-solid fa-user-circle text-2xl text-pink-500"></i>
                         </div>
-                        <h2 class="font-bold text-gray-700">Profil</h2>
+                        <h2 class="font-bold text-gray-800 z-10">Profil</h2>
                     </div>
                 </div>
             </div>
