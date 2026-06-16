@@ -1,0 +1,23 @@
+# Build artifacts
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+.env
+*.env
+.env.local
+.env.production
+
+# Node
+node_modules/
+
+# Logs
+*.log
