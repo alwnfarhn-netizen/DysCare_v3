@@ -307,23 +307,58 @@ function submitAssessmentAnswer(userAnswer) {
     // supaya tidak menurunkan rasa percaya diri)
     playSound(isCorrect ? 'correct' : 'wrong');
 
+    const screen = document.getElementById('assessment-screen');
+
     // Disable semua tombol sebentar
     document.querySelectorAll('.assessment-option-btn').forEach(btn => {
         btn.disabled = true;
+        
+        // Hapus style default hover agar warnanya tidak bentrok
+        btn.classList.remove('hover:bg-brand-blue', 'hover:text-white', 'hover:border-brand-blue');
+
         if (btn.innerText.trim() === userAnswer) {
-            btn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
+            if (isCorrect) {
+                // Jawaban Benar -> Hijau
+                btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                btn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+                btn.innerHTML += ' <i class="fa-solid fa-check ml-2"></i>';
+                
+                screen.classList.remove('bg-white');
+                screen.classList.add('bg-green-50');
+            } else {
+                // Jawaban Salah -> Merah
+                btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-500');
+                btn.innerHTML += ' <i class="fa-solid fa-xmark ml-2"></i>';
+                
+                // Ubah background container menjadi merah muda sementara
+                screen.classList.remove('bg-white');
+                screen.classList.add('bg-red-50', 'border-2', 'border-red-200');
+                
+                // Tunjukkan opsi yang benar dengan warna hijau lembut
+                document.querySelectorAll('.assessment-option-btn').forEach(correctBtn => {
+                    if (correctBtn.innerText.trim() === q.correct) {
+                        correctBtn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+                        correctBtn.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
+                    }
+                });
+            }
         }
     });
 
-    // Lanjut ke soal berikutnya atau finish
+    // Lanjut ke soal berikutnya atau finish (waktu ditambah jadi 1500ms agar peringatan warna terlihat)
     setTimeout(() => {
+        // Kembalikan background ke putih sebelum soal berikutnya muncul
+        screen.classList.remove('bg-red-50', 'border-2', 'border-red-200', 'bg-green-50');
+        screen.classList.add('bg-white');
+        
         assessmentState.currentIndex++;
         if (assessmentState.currentIndex < assessmentState.allQuestions.length) {
             renderAssessmentQuestion();
         } else {
             finishAssessment();
         }
-    }, 600);
+    }, 1500);
 }
 
 /* -------------------- HITUNG SKOR & TENTUKAN LEVEL -------------------- */

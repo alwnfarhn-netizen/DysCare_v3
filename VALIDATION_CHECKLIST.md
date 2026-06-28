@@ -79,21 +79,19 @@
 | Word Highlighting | `speakTextWithHighlight()` + CSS `.highlight-word` | `utils.js` L117; `style.css` L265 |
 | Drag-drop mengeja | Tile huruf dengan dragstart/dragend/click | `spelling.js` L49-76 |
 | AI Image pada mengeja | `generateImage(item.imagePrompt)` | `spelling.js` L33 |
-| Panel aksesibilitas | Font/ukuran/kontras/kecerahan | `accessibility.js` L1-82 |
+| Panel aksesibilitas | Font/ukuran/kontras/kecerahan (Persist via localStorage) | `accessibility.js` L29-44 |
 | Profil pengguna | Input nama + localStorage | `storage.js` L91-108; `index.html` L502-530 |
 | Capaian 2 area + AI advice | Membaca dan Mengeja, area Math di-hide | `index.html` L462-488; `progress.js` L1-71 |
 | Pre-assessment 12 soal → 6 level | 2 soal per level, hanya domain reading + spelling | `assessment.js` L26-178 |
 | Sistem 6 level + naik level otomatis | ≥80% akurasi × 3 sesi, `checkLevelUp()` | `level.js` L73-87 |
 | VAKT badges | Badge V/A/K/T di reading-screen dan spelling-screen | `index.html` L256-263, L352-359; `style.css` L294-314 |
+| Copyright di CSS update | `style.css` L35 menggunakan `© 2026 DYSCARE - M. Alwan Farhan \| PLB UNESA` | `style.css` L35 |
 
 ### ⚠️ PARTIAL (Ada tapi belum sempurna)
 
 | Temuan | Detail | Prioritas |
 |--------|--------|-----------|
-| Copyright di CSS outdated | `style.css` L35: masih `© 2025 A5ESA` bukan `© 2026 DYSCARE` | Minor |
 | STT hanya Chrome | `webkitSpeechRecognition` tidak ada di Firefox/Safari. Tombol "Baca (Rekam)" disembunyikan otomatis jika tidak didukung. | Info (bukan bug) |
-| Accessibility settings tidak persist | `accessibility.js` tidak menyimpan ke localStorage. Saat refresh halaman, pengaturan reset. | Minor |
-| Modul Menulis dan Berhitung tidak ada badge "SEGERA" | Card di-hide penuh (`class="hidden"`), bukan ditampilkan dengan badge Coming Soon seperti di DEVELOPMENT_PROMPTS.md PROMPT 2. | Minor (tidak berdampak karena user tidak melihat card sama sekali) |
 
 ### ❌ MISSING (Belum Ada)
 

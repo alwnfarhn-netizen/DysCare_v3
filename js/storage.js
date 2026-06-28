@@ -124,6 +124,11 @@ function confirmResetProgress() {
     localStorage.removeItem(STORAGE_KEYS.HISTORY);
     localStorage.removeItem(STORAGE_KEYS.ASSESSMENT);
     localStorage.removeItem(STORAGE_KEYS.LEVEL_PROGRESS);
+    
+    // Reset status popup panduan agar muncul lagi
+    localStorage.removeItem('hide_info_selamatdatang');
+    localStorage.removeItem('hide_info_membaca');
+    localStorage.removeItem('hide_info_mengeja');
 
     updateScoreDisplays();
     updateProgressUI();

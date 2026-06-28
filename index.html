@@ -164,14 +164,15 @@
                      Kode dipertahankan untuk pengembangan tahap berikutnya (disgrafia).
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISGRAFIA_MODUL = true di js/config.js -->
-                <div id="card-menulis" onclick="navigateTo('writing-screen')"
+                <div id="card-menulis" onclick="showComingSoonAlert('Menulis')"
                     class="hidden bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-3xl shadow-lg shadow-red-100/50 border border-red-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-red-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10">
+                    <div class="absolute top-3 right-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm z-20">SEGERA</div>
+                    <div class="absolute inset-0 bg-white/40 z-10 pointer-events-none"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10 opacity-60">
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
                     <h2 class="text-xl font-bold text-gray-800 z-10">Menulis</h2>
-                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Disgrafia</p>
+                    <p class="text-xs text-gray-500 mt-1 z-10 font-medium text-center">Pengembangan Tahap Berikutnya</p>
                 </div>
 
                 <div onclick="navigateTo('spelling-screen')"
@@ -188,14 +189,15 @@
                      Kode dipertahankan untuk pengembangan tahap berikutnya (diskalkulia).
                      Aktifkan kembali pada fase Implementation penelitian lanjutan
                      via SHOW_DISKALKULIA_MODUL = true di js/config.js -->
-                <div id="card-berhitung" onclick="navigateTo('math-screen')"
+                <div id="card-berhitung" onclick="showComingSoonAlert('Berhitung')"
                     class="hidden bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-3xl shadow-lg shadow-purple-100/50 border border-purple-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-purple-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10">
+                    <div class="absolute top-3 right-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm z-20">SEGERA</div>
+                    <div class="absolute inset-0 bg-white/40 z-10 pointer-events-none"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 z-10 opacity-60">
                         <i class="fa-solid fa-calculator text-4xl text-purple-500"></i>
                     </div>
                     <h2 class="text-xl font-bold text-gray-800 z-10">Berhitung</h2>
-                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Diskalkulia</p>
+                    <p class="text-xs text-gray-500 mt-1 z-10 font-medium text-center">Pengembangan Tahap Berikutnya</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
@@ -223,7 +225,11 @@
         <div id="assessment-screen" class="screen-content hidden bg-white rounded-3xl shadow-xl p-6 md:p-8">
 
             <!-- Header kecil -->
-            <div class="text-center mb-6">
+            <div class="text-center mb-6 relative">
+                <button onclick="if(confirm('Yakin ingin melewati skrining? Anak akan mulai dari Level 1 (Pengenalan Huruf).')) { skipAssessment(); }" 
+                    class="absolute top-0 right-0 text-xs font-bold text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-full transition shadow-sm">
+                    Lewati <i class="fa-solid fa-forward ml-1"></i>
+                </button>
                 <div
                     class="inline-flex items-center gap-1 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full mb-2">
                     SKRINING AWAL<button onclick="showInfo('skrining')" class="text-white/80 hover:text-white"

@@ -62,6 +62,14 @@ function showInfoModal(title, msg, iconClass = "fa-solid fa-info-circle") {
     document.getElementById('info-modal').classList.remove('hidden');
 }
 
+function showComingSoonAlert(moduleName) {
+    showInfoModal(
+        "🚧 Modul " + moduleName,
+        "Modul " + moduleName + " adalah pengembangan tahap berikutnya. Fokus penelitian saat ini adalah membaca permulaan untuk anak disleksia. Modul ini akan dikembangkan setelah modul utama divalidasi.",
+        "fa-solid fa-person-digging text-orange-500"
+    );
+}
+
 /* -------------------- SFX ENGINE -------------------- */
 // Membangun suara native tanpa file audio eksternal
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
