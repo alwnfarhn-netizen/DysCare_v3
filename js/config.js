@@ -86,7 +86,7 @@ const LEVEL_CONFIG = {
 // Kontrol visibilitas modul sesuai batasan penelitian fase R&D ini.
 // Dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia)
 // Aktifkan kembali pada fase Implementation penelitian lanjutan
-const SHOW_DISGRAFIA_MODUL   = false;
+const SHOW_DISGRAFIA_MODUL   = true;
 const SHOW_DISKALKULIA_MODUL = false;
 
 // Storage Keys (konsisten di seluruh aplikasi)
