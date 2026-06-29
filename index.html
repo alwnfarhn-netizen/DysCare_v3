@@ -149,7 +149,7 @@
                 <p class="text-gray-500 text-lg">Belajar Membaca Lebih Mudah dengan Multisensori VAKT</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div onclick="navigateTo('reading-screen')"
                     class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-3xl shadow-lg shadow-blue-100/50 border border-blue-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-blue-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
                     <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
@@ -157,7 +157,15 @@
                         <i class="fa-solid fa-book-open text-4xl text-brand-blue"></i>
                     </div>
                     <h2 class="text-xl font-bold text-gray-800 z-10">Membaca</h2>
-                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Disleksia</p>
+                </div>
+
+                <div onclick="navigateTo('spelling-screen')"
+                    class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-3xl shadow-lg shadow-green-100/50 border border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-green-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 z-10">
+                        <i class="fa-solid fa-shapes text-4xl text-green-500"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 z-10">Mengeja</h2>
                 </div>
 
                 <!-- Modul Menulis: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
@@ -171,17 +179,6 @@
                         <i class="fa-solid fa-pen-nib text-4xl text-red-500"></i>
                     </div>
                     <h2 class="text-xl font-bold text-gray-800 z-10">Menulis</h2>
-                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Latihan Motorik Halus</p>
-                </div>
-
-                <div onclick="navigateTo('spelling-screen')"
-                    class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-3xl shadow-lg shadow-green-100/50 border border-green-200 cursor-pointer flex flex-col items-center justify-center h-48 group hover:shadow-xl hover:shadow-green-200/50 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="bg-white p-4 rounded-2xl shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 z-10">
-                        <i class="fa-solid fa-shapes text-4xl text-green-500"></i>
-                    </div>
-                    <h2 class="text-xl font-bold text-gray-800 z-10">Mengeja</h2>
-                    <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Susun Kata Bergambar</p>
                 </div>
 
                 <!-- Modul Berhitung: dinonaktifkan sesuai Batasan Penelitian fase R&D ini (fokus: disleksia).
@@ -199,7 +196,7 @@
                     <p class="text-xs text-gray-500 mt-1 z-10 font-medium text-center">Pengembangan Tahap Berikutnya</p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
+                <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-3 max-w-2xl mx-auto w-full">
                     <div onclick="navigateTo('progress-screen')"
                         class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-3xl shadow-lg shadow-orange-100/50 border border-orange-200 cursor-pointer flex flex-col items-center justify-center group h-32 hover:shadow-xl hover:shadow-orange-200/50 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                         <div class="absolute top-0 left-0 -mt-2 -ml-2 w-16 h-16 bg-white opacity-30 rounded-full blur-lg group-hover:scale-150 transition-transform duration-500"></div>
@@ -307,49 +304,84 @@
         <!-- 3. Writing Screen -->
         <div id="writing-screen"
             class="screen-content hidden bg-white rounded-3xl shadow-xl p-8 min-h-[500px] flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-red-600"><i class="fa-solid fa-pen-nib mr-2"></i> Menulis (Disgrafia)
-                </h2>
-                <div class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">Latihan Motorik Halus
+            <div class="flex justify-between items-center mb-3">
+                <div class="flex items-center gap-2">
+                    <h2 class="text-2xl font-bold text-red-600"><i class="fa-solid fa-pen-nib mr-2"></i> Menulis</h2>
+                    <button onclick="showInfo('menulis')" class="text-red-400 hover:text-red-600 transition"
+                        title="Info modul ini"><i class="fa-solid fa-circle-info"></i></button>
                 </div>
             </div>
 
-            <div class="flex-grow flex flex-col items-center">
-                <div class="flex bg-gray-100 p-1 rounded-xl mb-6 shadow-sm border border-gray-200">
-                    <button id="btn-mode-abjad"
-                        class="px-6 py-2 rounded-lg font-bold bg-white text-red-600 shadow-sm transition">Abjad
-                        (A-Z)</button>
-                    <button id="btn-mode-angka"
-                        class="px-6 py-2 rounded-lg font-bold text-gray-500 hover:text-gray-700 transition">Angka
-                        (1-10)</button>
-                </div>
-                <p class="text-gray-500 mb-4 text-center">Tebalkan atau tiru pola di bawah ini:</p>
+            <!-- Label VAKT: eksplisit untuk penilaian ahli media (Bab III proposal) -->
+            <div class="flex flex-wrap gap-2 mb-5">
+                <span class="vakt-badge vakt-v" title="Visual: pola huruf atau angka">V</span>
+                <span class="vakt-badge vakt-a" title="Auditory: Text-to-Speech nama huruf/angka">A</span>
+                <span class="vakt-badge vakt-k" title="Kinesthetic: gerakan menulis di kanvas">K</span>
+                <span class="vakt-badge vakt-t" title="Tactile: sentuhan jari atau stylus">T</span>
+                <span class="text-xs text-gray-400 self-center ml-1">Modalitas VAKT aktif</span>
+            </div>
 
-                <div class="canvas-container shadow-inner mb-6">
-                    <div id="trace-guide" class="trace-guide">A</div>
-                    <canvas id="writing-canvas" width="300" height="300"></canvas>
+            <!-- Kontainer Utama: Flex-col di mobile, Flex-row (menyamping) di desktop -->
+            <div class="flex-grow flex flex-col md:flex-row gap-8 items-center md:items-start justify-center mt-4">
+                
+                <!-- Kiri: Canvas -->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="canvas-container shadow-inner mb-6 relative">
+                        <div id="start-indicator" class="absolute bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold z-20 transition-all shadow-md pointer-events-none">
+                            1 <i class="fa-solid fa-arrow-down ml-1 text-[8px]"></i>
+                        </div>
+                        <div id="trace-guide-outline" class="trace-guide-outline">a</div>
+                        <div id="trace-guide-dots" class="trace-guide-dots">a</div>
+                        <canvas id="writing-canvas" width="300" height="300"></canvas>
+                    </div>
                 </div>
 
-                <div class="flex gap-4 flex-wrap justify-center">
-                    <button id="btn-undo-canvas"
-                        class="main-button bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-rotate-left"></i> Undo
-                    </button>
-                    <button id="btn-clear-canvas"
-                        class="main-button bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-eraser"></i> Hapus
-                    </button>
-                    <button id="btn-next-letter"
-                        class="main-button bg-brand-blue hover:bg-brand-bluehover text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-200">
-                        Huruf Lanjut <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                    <button id="btn-check-writing"
-                        class="main-button bg-brand-yellow hover:bg-brand-yellowhover text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
-                        Cek Tulisan ✨
-                    </button>
+                <!-- Kanan: Area Kontrol -->
+                <div class="w-full md:w-1/2 flex flex-col items-center md:items-start">
+                    
+                    <div class="flex items-center gap-3 mb-2">
+                        <p class="text-gray-600 text-lg m-0 font-medium">Tebalkan pola di samping:</p>
+                        <button id="btn-listen-writing"
+                            class="bg-blue-100 hover:bg-blue-200 text-brand-blue p-2 rounded-full transition w-10 h-10 flex items-center justify-center shadow-sm"
+                            title="Dengarkan">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-500 mb-6 text-sm text-center md:text-left">Tebalkan atau tiru pola di samping, tiru juga pola ini di telapak tangan.</p>
+
+                    <div class="flex bg-gray-100 p-1 rounded-xl mb-6 shadow-sm border border-gray-200 w-full max-w-xs">
+                        <button id="btn-mode-abjad"
+                            class="flex-1 py-2 rounded-lg font-bold bg-white text-red-600 shadow-sm transition">Abjad
+                            (a-z)</button>
+                        <button id="btn-mode-angka"
+                            class="flex-1 py-2 rounded-lg font-bold text-gray-500 hover:text-gray-700 transition">Angka
+                            (1-10)</button>
+                    </div>
+
+                    <div class="flex gap-4 flex-wrap justify-center md:justify-start w-full mb-6">
+                        <button id="btn-undo-canvas"
+                            class="main-button bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-left"></i> Undo
+                        </button>
+                        <button id="btn-clear-canvas"
+                            class="main-button bg-red-100 hover:bg-red-200 text-red-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-eraser"></i> Hapus
+                        </button>
+                    </div>
+                    
+                    <div class="flex gap-4 flex-wrap justify-center md:justify-start w-full mb-4">
+                        <button id="btn-check-writing"
+                            class="main-button bg-brand-yellow hover:bg-brand-yellowhover text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg w-full md:w-auto justify-center">
+                            Cek Tulisan ✨
+                        </button>
+                        <button id="btn-next-letter"
+                            class="main-button bg-brand-blue hover:bg-brand-bluehover text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-blue-200 w-full md:w-auto justify-center">
+                            Huruf Lanjut <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <div id="writing-feedback" class="mt-2 p-3 bg-white rounded-xl shadow-sm border border-gray-200 text-center hidden w-full"></div>
                 </div>
-                <div id="writing-feedback"
-                    class="mt-4 p-3 bg-white rounded-xl shadow-sm border border-gray-200 text-center hidden"></div>
             </div>
         </div>
 
@@ -503,6 +535,14 @@
                             id="prog-spell-val" class="font-bold text-green-700">0 Latihan</span></div>
                     <div class="w-full bg-green-200 rounded-full h-3">
                         <div id="prog-bar-spell" class="bg-green-500 h-3 rounded-full transition-all duration-1000"
+                            style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="bg-red-50 p-5 rounded-2xl">
+                    <div class="flex justify-between mb-2"><span class="font-bold text-red-700">Menulis</span><span
+                            id="prog-write-val" class="font-bold text-red-700">0 Latihan</span></div>
+                    <div class="w-full bg-red-200 rounded-full h-3">
+                        <div id="prog-bar-write" class="bg-red-500 h-3 rounded-full transition-all duration-1000"
                             style="width: 0%"></div>
                     </div>
                 </div>

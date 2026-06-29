@@ -11,11 +11,15 @@ function updateProgressUI() {
     const rBar  = document.getElementById('prog-bar-read');
     const sVal  = document.getElementById('prog-spell-val');
     const sBar  = document.getElementById('prog-bar-spell');
+    const wVal  = document.getElementById('prog-write-val');
+    const wBar  = document.getElementById('prog-bar-write');
 
     if (rVal) rVal.innerText = appState.progress.reading + ' Latihan';
     if (rBar) rBar.style.width = Math.min((appState.progress.reading / maxExercises) * 100, 100) + '%';
     if (sVal) sVal.innerText = appState.progress.spelling + ' Latihan';
     if (sBar) sBar.style.width = Math.min((appState.progress.spelling / maxExercises) * 100, 100) + '%';
+    if (wVal) wVal.innerText = (appState.progress.writing || 0) + ' Latihan';
+    if (wBar) wBar.style.width = Math.min(((appState.progress.writing || 0) / maxExercises) * 100, 100) + '%';
 
     // Update progress bar sesi menuju naik level
     const passEl = document.getElementById('prog-bar-session');

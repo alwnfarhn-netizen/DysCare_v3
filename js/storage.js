@@ -20,10 +20,12 @@ function saveProgress() {
 function updateScoreDisplays() {
     const rScore = document.getElementById('reading-score');
     const sScore = document.getElementById('spelling-score');
+    const wScore = document.getElementById('writing-score');
     const mScore = document.getElementById('math-score');
 
     if (rScore) rScore.innerText = appState.progress.reading;
     if (sScore) sScore.innerText = appState.progress.spelling;
+    if (wScore) wScore.innerText = appState.progress.writing || 0;
     if (mScore) mScore.innerText = appState.progress.math;
 }
 
@@ -110,7 +112,7 @@ function getProfileName() {
 /* -------------------- RESET -------------------- */
 function confirmResetProgress() {
     // Reset semua data progress dan level
-    appState.progress = { reading: 0, spelling: 0, math: 0 };
+    appState.progress = { reading: 0, spelling: 0, writing: 0, math: 0 };
     appState.currentLevel = 1;
     appState.sessionTracker = {
         correct:         0,
@@ -129,6 +131,7 @@ function confirmResetProgress() {
     localStorage.removeItem('hide_info_selamatdatang');
     localStorage.removeItem('hide_info_membaca');
     localStorage.removeItem('hide_info_mengeja');
+    localStorage.removeItem('hide_info_menulis');
 
     updateScoreDisplays();
     updateProgressUI();

@@ -3,6 +3,7 @@
    ========================================================================== */
 
 /* --- IMPORT FONT --- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&family=Raleway+Dots&display=swap');
 @import url('https://fonts.cdnfonts.com/css/opendyslexic');
 
 /* --- CORE STYLES --- */
@@ -189,18 +190,31 @@ body::after {
     background-size: 100% 50px;
 }
 
-.trace-guide {
+.trace-guide-outline {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 250px;
     color: transparent;
-    -webkit-text-stroke: 3px #cbd5e1;
+    -webkit-text-stroke: 20px #e2e8f0; /* Garis bingkai lebih tebal dan sedikit lebih terang */
     pointer-events: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400; /* matching weight of dots */
     z-index: 0;
+}
+
+.trace-guide-dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 250px;
+    color: #475569; /* dark grey for dots inside */
+    pointer-events: none;
+    font-family: 'Raleway Dots', 'Raleway', sans-serif;
+    font-weight: 400;
+    z-index: 1;
 }
 
 /* --- ACCESSIBILITY PANEL --- */

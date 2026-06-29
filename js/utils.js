@@ -33,7 +33,8 @@ function navigateTo(screenId) {
     const autoInfoMap = {
         'home-screen':     'selamatdatang',
         'reading-screen':  'membaca',
-        'spelling-screen': 'mengeja'
+        'spelling-screen': 'mengeja',
+        'writing-screen':  'menulis'
     };
     if (autoInfoMap[screenId]) {
         const infoKey = autoInfoMap[screenId];
@@ -199,6 +200,7 @@ const INFO_CONTENT = {
             <ul class="list-disc pl-4 space-y-1">
                 <li>Pilih <strong>Membaca</strong> untuk latihan membaca dengan cerita AI dan word highlighting</li>
                 <li>Pilih <strong>Mengeja</strong> untuk latihan menyusun huruf dengan gambar AI</li>
+                <li>Pilih <strong>Menulis</strong> untuk latihan menebalkan huruf/angka di layar dengan umpan balik AI</li>
                 <li>Pilih <strong>Capaian</strong> untuk melihat perkembangan belajar anak</li>
                 <li>Pilih <strong>Profil</strong> untuk mengisi nama dan melihat hasil skrining</li>
             </ul>
@@ -244,6 +246,23 @@ const INFO_CONTENT = {
             👂 Auditory: TTS nama kata<br>
             ✋ Kinesthetic: drag & drop huruf<br>
             🤚 Tactile: sentuh tile untuk memindah huruf</p>
+        `
+    },
+    menulis: {
+        title: "✍️ Modul Menulis",
+        body: `
+            <p><strong>Tujuan:</strong> Melatih kemampuan motorik halus dan pengenalan bentuk huruf/angka.</p>
+            <p><strong>Cara pakai:</strong></p>
+            <ul class="list-disc pl-4 space-y-1">
+                <li>Ikuti pola huruf atau angka yang muncul di kanvas</li>
+                <li>Gunakan jari (di layar sentuh) atau mouse untuk menebalkan pola</li>
+                <li>Tekan <strong>Cek Tulisan</strong> untuk menilai tulisan</li>
+                <li>Gunakan <strong>Undo</strong> atau <strong>Hapus</strong> bila perlu</li>
+            </ul>
+            <p><strong>Pendekatan VAKT aktif:</strong><br>
+            👁 Visual: pola huruf atau angka<br>
+            ✋ Kinesthetic: gerakan menulis di kanvas<br>
+            🤚 Tactile: sentuhan jari atau stylus</p>
         `
     },
     capaian: {
