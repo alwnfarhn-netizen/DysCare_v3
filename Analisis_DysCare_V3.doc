@@ -1,0 +1,601 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset="utf-8"><title>Analisis DysCare V3</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f2f2f2; }
+h1, h2, h3 { color: #2c3e50; }
+code { background-color: #f8f9fa; padding: 2px 4px; border-radius: 4px; }
+pre { background-color: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<h1>📊 Analisis Keseluruhan Kode &amp; Konten DysCare V3</h1>
+<h2>Ringkasan Proyek</h2>
+<p><strong>DysCare</strong> (Dynamic System for Children with Reading &amp; Encoding) adalah media pembelajaran membaca permulaan berbasis web untuk anak disleksia usia 6–12 tahun, menggunakan pendekatan multisensori <strong>VAKT</strong> (Visual, Auditory, Kinesthetic, Tactile) + <strong>Adaptive Learning</strong> berbasis AI (Gemini).</p>
+<hr>
+<h2>Arsitektur Kode</h2>
+<h3>Struktur File</h3>
+<table>
+<thead>
+<tr>
+<th>Kategori</th>
+<th>File</th>
+<th>Ukuran</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Entry Point</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/index.html">index.html</a></td>
+<td>74KB</td>
+<td>Single-page app, semua screen dalam 1 file</td>
+</tr>
+<tr>
+<td><strong>Styling</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/css/style.css">style.css</a></td>
+<td>9.7KB</td>
+<td>Custom CSS + Tailwind CDN</td>
+</tr>
+<tr>
+<td><strong>Config</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/config.js">config.js</a></td>
+<td>4.6KB</td>
+<td>API keys, level config, assessment config</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/state.js">state.js</a></td>
+<td>17.5KB</td>
+<td>Global state + konten per level (L1-L6)</td>
+</tr>
+<tr>
+<td><strong>Navigasi &amp; Utilitas</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/utils.js">utils.js</a></td>
+<td>16.3KB</td>
+<td>Navigasi, modal, SFX, TTS, info popups</td>
+</tr>
+<tr>
+<td><strong>Adaptive Engine</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/level.js">level.js</a></td>
+<td>9KB</td>
+<td>Sistem 6 level, mastery criterion</td>
+</tr>
+<tr>
+<td><strong>Modul Membaca</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/reading.js">reading.js</a></td>
+<td>5.1KB</td>
+<td>TTS + STT + AI cerita</td>
+</tr>
+<tr>
+<td><strong>Modul Mengeja</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/spelling.js">spelling.js</a></td>
+<td>4.2KB</td>
+<td>Drag &amp; drop + AI image</td>
+</tr>
+<tr>
+<td><strong>Modul Menulis</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/writing.js">writing.js</a></td>
+<td>9.1KB</td>
+<td>Canvas tracing + AI vision</td>
+</tr>
+<tr>
+<td><strong>Modul Berhitung</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/math.js">math.js</a></td>
+<td>4.4KB</td>
+<td>Soal pilihan ganda visual</td>
+</tr>
+<tr>
+<td><strong>Pre-Assessment</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/assessment.js">assessment.js</a></td>
+<td>23.2KB</td>
+<td>Skrining 12 soal diagnostik</td>
+</tr>
+<tr>
+<td><strong>Penyimpanan</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/storage.js">storage.js</a></td>
+<td>5.5KB</td>
+<td>LocalStorage CRUD</td>
+</tr>
+<tr>
+<td><strong>Progress</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/progress.js">progress.js</a></td>
+<td>3.3KB</td>
+<td>UI capaian + saran AI</td>
+</tr>
+<tr>
+<td><strong>Aksesibilitas</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/accessibility.js">accessibility.js</a></td>
+<td>4.1KB</td>
+<td>Font disleksia, ukuran, kontras</td>
+</tr>
+<tr>
+<td><strong>AI Core</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/js/ai.js">ai.js</a></td>
+<td>2.8KB</td>
+<td>Gemini Text, Vision, Imagen</td>
+</tr>
+<tr>
+<td><strong>AI Service</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/ai-service.js">ai-service.js</a></td>
+<td>4.4KB</td>
+<td>Cerita AI + Saran Cerdas</td>
+</tr>
+<tr>
+<td><strong>AI Config</strong></td>
+<td><a href="file:///c:/Users/Administrator/.gemini/antigravity-ide/scratch/DysCare_v3-main/ai-config.js">ai-config.js</a></td>
+<td>600B</td>
+<td>Gemini Flash Lite config</td>
+</tr>
+</tbody></table>
+<h3>Diagram Alur Modul</h3>
+<pre><code class="language-mermaid">graph TD
+    A[&quot;index.html&lt;br&gt;(Single Page App)&quot;] --&gt; B[&quot;main.js&lt;br&gt;(Entry Point)&quot;]
+    B --&gt; C[&quot;config.js&lt;br&gt;(API + Level Config)&quot;]
+    B --&gt; D[&quot;storage.js&lt;br&gt;(Load Data)&quot;]
+    B --&gt; E[&quot;accessibility.js&lt;br&gt;(UI Settings)&quot;]
+    B --&gt; F{&quot;Assessment&lt;br&gt;Selesai?&quot;}
+    F --&gt;|Belum| G[&quot;assessment.js&lt;br&gt;(12 Soal Skrining)&quot;]
+    F --&gt;|Sudah| H[&quot;Home Screen&quot;]
+    H --&gt; I[&quot;reading.js&lt;br&gt;(Modul Membaca)&quot;]
+    H --&gt; J[&quot;spelling.js&lt;br&gt;(Modul Mengeja)&quot;]
+    H --&gt; K[&quot;writing.js&lt;br&gt;(Modul Menulis)&quot;]
+    H --&gt; L[&quot;math.js&lt;br&gt;(Modul Berhitung - Hidden)&quot;]
+    I --&gt; M[&quot;level.js&lt;br&gt;(Adaptive Engine)&quot;]
+    J --&gt; M
+    M --&gt; N[&quot;storage.js&lt;br&gt;(Save Progress)&quot;]
+    I --&gt; O[&quot;ai-service.js&lt;br&gt;(Cerita AI)&quot;]
+    J --&gt; P[&quot;ai.js&lt;br&gt;(Image Generation)&quot;]
+    K --&gt; Q[&quot;ai.js&lt;br&gt;(Vision Feedback)&quot;]
+</code></pre>
+<hr>
+<h2>Analisis Konten Per Modul</h2>
+<h3>1. Modul Membaca (VAKT ✅)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Konten</strong></td>
+<td>6 level dataset (L1-L6) + AI-generated stories</td>
+</tr>
+<tr>
+<td><strong>L1</strong></td>
+<td>Huruf tunggal dieja: <code>a y a m</code>, <code>i k a n</code>, dll (8 item)</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Suku kata KV: <code>ma mi mu</code>, <code>ka ki ku</code>, dll (8 item)</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>Kata 2 suku kata: <code>buku</code>, <code>meja</code>, <code>guru</code>, dll (10 item)</td>
+</tr>
+<tr>
+<td><strong>L4</strong></td>
+<td>Kata kompleks: <code>mainan</code>, <code>boneka</code>, <code>sepeda</code>, dll (10 item)</td>
+</tr>
+<tr>
+<td><strong>L5</strong></td>
+<td>Frasa: <code>makan roti</code>, <code>minum susu</code>, dll (10 item)</td>
+</tr>
+<tr>
+<td><strong>L6</strong></td>
+<td>Kalimat SPOK: <code>ibu memasak nasi di dapur</code>, dll (10 item)</td>
+</tr>
+<tr>
+<td><strong>VAKT</strong></td>
+<td>V=word highlight, A=TTS, K=rekam suara, T=tap layar</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td>✅ Cerita AI (Gemini via ai-service.js)</td>
+</tr>
+</tbody></table>
+<h3>2. Modul Mengeja (VAKT ✅)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Konten</strong></td>
+<td>6 level dataset (L1-L6) + AI image generation</td>
+</tr>
+<tr>
+<td><strong>L1</strong></td>
+<td>Kata 2 huruf: <code>es</code>, <code>mi</code>, <code>tv</code>, <code>hi</code>, <code>ya</code>, <code>oh</code> (6 item)</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Kata 3 huruf: <code>air</code>, <code>oli</code>, <code>kue</code>, <code>hiu</code>, <code>aki</code>, <code>gua</code> (6 item)</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>Kata 4 huruf (KV-KV): <code>buku</code>, <code>meja</code>, <code>susu</code>, dll (8 item)</td>
+</tr>
+<tr>
+<td><strong>L4</strong></td>
+<td>Kata 5 huruf: <code>gajah</code>, <code>kursi</code>, <code>balon</code>, dll (8 item)</td>
+</tr>
+<tr>
+<td><strong>L5</strong></td>
+<td>Kata 6 huruf: <code>sepatu</code>, <code>boneka</code>, <code>gunung</code>, dll (8 item)</td>
+</tr>
+<tr>
+<td><strong>L6</strong></td>
+<td>Kata 7+ huruf: <code>kacamata</code>, <code>pelangi</code>, <code>matahari</code>, dll (7 item)</td>
+</tr>
+<tr>
+<td><strong>VAKT</strong></td>
+<td>V=gambar AI, A=TTS kata, K=drag &amp; drop, T=tap tile</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td>✅ Image generation (Imagen 4.0)</td>
+</tr>
+</tbody></table>
+<h3>3. Modul Menulis (VAKT ✅)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Konten</strong></td>
+<td>Abjad a-z (26 huruf) + Angka 1-10</td>
+</tr>
+<tr>
+<td><strong>Level</strong></td>
+<td>Tidak ber-level (progresif: huruf → angka)</td>
+</tr>
+<tr>
+<td><strong>Tampilan</strong></td>
+<td>Outline + Dots (Raleway + Raleway Dots font)</td>
+</tr>
+<tr>
+<td><strong>VAKT</strong></td>
+<td>V=pola huruf, A=TTS nama huruf, K=menulis di kanvas, T=sentuhan jari/stylus</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td>✅ Vision feedback (Gemini Vision)</td>
+</tr>
+</tbody></table>
+<h3>4. Modul Berhitung (Hidden ❌)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Status</strong></td>
+<td><code>SHOW_DISKALKULIA_MODUL = false</code> (disembunyikan)</td>
+</tr>
+<tr>
+<td><strong>Konten</strong></td>
+<td>3 level (Easy/Medium/Hard) — belum migrasi ke 6-level</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td>✅ Soal cerita AI</td>
+</tr>
+</tbody></table>
+<h3>5. Pre-Assessment (Skrining)</h3>
+<table>
+<thead>
+<tr>
+<th>Aspek</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Jumlah Soal</strong></td>
+<td>12 soal (2 per level × 6 level)</td>
+</tr>
+<tr>
+<td><strong>Tipe Soal</strong></td>
+<td>choose-word, match-image, count-letters</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>Entry level 1-6 berdasarkan skor total</td>
+</tr>
+<tr>
+<td><strong>Audio</strong></td>
+<td>✅ TTS per soal</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Sistem Adaptif (Level Engine)</h2>
+<pre><code class="language-mermaid">graph LR
+    A[&quot;Anak Jawab&lt;br&gt;(Benar/Salah)&quot;] --&gt; B[&quot;recordExerciseResult()&quot;]
+    B --&gt; C{&quot;5 Latihan&lt;br&gt;= 1 Sesi?&quot;}
+    C --&gt;|Belum| B
+    C --&gt;|Ya| D[&quot;Hitung Akurasi Sesi&quot;]
+    D --&gt; E{&quot;Akurasi&lt;br&gt;≥ 80%?&quot;}
+    E --&gt;|Ya| F[&quot;consecutivePass++&quot;]
+    E --&gt;|Tidak| G[&quot;consecutivePass = 0&quot;]
+    F --&gt; H{&quot;3 Sesi Lulus&lt;br&gt;Berturut-turut?&quot;}
+    H --&gt;|Ya| I[&quot;🎉 NAIK LEVEL!&quot;]
+    H --&gt;|Belum| J[&quot;Lanjut Latihan&quot;]
+    G --&gt; J
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Nilai</th>
+<th>Referensi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total Level</td>
+<td>6</td>
+<td>Simple View of Reading (Gough &amp; Tunmer, 1986)</td>
+</tr>
+<tr>
+<td>Akurasi Threshold</td>
+<td>≥ 80%</td>
+<td>Cooper, Heron &amp; Heward (2020)</td>
+</tr>
+<tr>
+<td>Sesi Berturut-turut</td>
+<td>3</td>
+<td>Mastery learning criterion</td>
+</tr>
+<tr>
+<td>Latihan per Sesi</td>
+<td>5</td>
+<td>Task Analysis Bab III</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Integrasi AI</h2>
+<table>
+<thead>
+<tr>
+<th>Fitur</th>
+<th>Model</th>
+<th>File</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cerita AI (Membaca)</td>
+<td><code>gemini-flash-lite-latest</code></td>
+<td>ai-service.js</td>
+<td>Generate teks bacaan per level</td>
+</tr>
+<tr>
+<td>Saran Cerdas (Capaian)</td>
+<td><code>gemini-flash-lite-latest</code></td>
+<td>ai-service.js</td>
+<td>Rekomendasi latihan berdasarkan performa</td>
+</tr>
+<tr>
+<td>Generate Teks</td>
+<td><code>gemini-2.5-flash-preview</code></td>
+<td>ai.js</td>
+<td>Generate konten teks umum</td>
+</tr>
+<tr>
+<td>Vision (Menulis)</td>
+<td><code>gemini-2.5-flash-preview</code></td>
+<td>ai.js</td>
+<td>Evaluasi tulisan tangan anak</td>
+</tr>
+<tr>
+<td>Image Gen (Mengeja)</td>
+<td><code>imagen-4.0-generate-001</code></td>
+<td>ai.js</td>
+<td>Generate gambar untuk soal mengeja</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[!WARNING]
+<strong>API Key terekspos di HTML!</strong> API key Gemini tersimpan langsung di meta tag <code>index.html</code> line 7. Ini berisiko untuk produksi, namun wajar untuk prototype/penelitian.</p>
+</blockquote>
+<hr>
+<h2>Fitur Aksesibilitas</h2>
+<table>
+<thead>
+<tr>
+<th>Fitur</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Font Disleksia</strong></td>
+<td>OpenDyslexic — huruf berat di bawah agar tidak tertukar</td>
+</tr>
+<tr>
+<td><strong>Ukuran Teks</strong></td>
+<td>Normal (16px) → Besar (18px) → Ekstra (20px)</td>
+</tr>
+<tr>
+<td><strong>Kontras</strong></td>
+<td>Normal → Tinggi (1.25) → Maksimal (1.5)</td>
+</tr>
+<tr>
+<td><strong>Kecerahan</strong></td>
+<td>Normal → Terang (1.3) → Redup (0.7)</td>
+</tr>
+<tr>
+<td><strong>Persistensi</strong></td>
+<td>✅ Tersimpan di localStorage</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Temuan &amp; Observasi</h2>
+<h3>✅ Hal yang Sudah Baik</h3>
+<ol>
+<li><strong>Arsitektur modular</strong> — setiap modul terpisah di file JS sendiri</li>
+<li><strong>6 level progresif</strong> dengan konten berbeda per level</li>
+<li><strong>VAKT lengkap</strong> di 3 modul aktif (Membaca, Mengeja, Menulis)</li>
+<li><strong>Pre-Assessment</strong> otomatis menentukan level entry</li>
+<li><strong>Info popup per modul</strong> dengan opsi &quot;Jangan tampilkan lagi&quot;</li>
+<li><strong>Aksesibilitas komprehensif</strong> (font, ukuran, kontras, kecerahan)</li>
+<li><strong>Fallback mechanism</strong> untuk AI (jika gagal, ada konten statis)</li>
+<li><strong>Referensi akademik</strong> terdokumentasi di kode (Gough &amp; Tunmer, Simple View of Reading, dll)</li>
+<li><strong>SFX native</strong> tanpa file audio eksternal (Web Audio API)</li>
+<li><strong>Watermark UNESA</strong> untuk branding institusi</li>
+</ol>
+<h3>⚠️ Catatan Teknis</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Temuan</th>
+<th>File</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Duplikasi konfigurasi AI</strong></td>
+<td><code>ai-config.js</code> + <code>config.js</code></td>
+<td>Dua file berbeda mendefinisikan API key + URL. <code>ai-config.js</code> pakai <code>gemini-flash-lite-latest</code>, <code>config.js</code> pakai <code>gemini-2.5-flash-preview</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Data DEPRECATED masih ada</strong></td>
+<td><code>state.js</code> L42-64, L186-208</td>
+<td>Array <code>sentencesEasy/Medium/Hard</code> dan <code>wordsEasy/Medium/Hard</code> sudah deprecated tapi masih ada</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Modul Math belum migrasi</strong></td>
+<td><code>math.js</code> + <code>state.js</code></td>
+<td>Masih pakai 3-tier (Easy/Medium/Hard), bukan 6-level</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>getTotalExercises()</strong></td>
+<td><code>level.js</code> L242</td>
+<td>Hanya hitung <code>reading + spelling</code>, belum termasuk <code>writing</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Modul Menulis tidak punya level</strong></td>
+<td><code>writing.js</code></td>
+<td>Tidak terintegrasi dengan sistem level 6 (standalone)</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>HTML monolitik</strong></td>
+<td><code>index.html</code></td>
+<td>1079 baris, semua screen dalam 1 file → sulit di-maintain</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Tailwind CDN</strong></td>
+<td><code>index.html</code> L11</td>
+<td>Menggunakan CDN runtime, bukan build. OK untuk prototype</td>
+</tr>
+</tbody></table>
+<h3>📝 Konten yang Bisa Diperbaiki</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Area</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>L1 Mengeja</td>
+<td>Kata <code>tv</code> dan <code>hi</code> kurang natural untuk anak disleksia</td>
+</tr>
+<tr>
+<td>2</td>
+<td>L2 Mengeja</td>
+<td>Kata <code>oli</code> dan <code>aki</code> tidak familiar untuk anak 6-8 tahun</td>
+</tr>
+<tr>
+<td>3</td>
+<td>L3 Mengeja</td>
+<td>Kata <code>ikan</code> punya 4 huruf tapi pola VK-VK, bukan KV-KV</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Info Menulis</td>
+<td>Bagian &quot;Pendekatan VAKT aktif&quot; di popup info sudah diperbarui menjadi VAKT (ada Audio)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>User Guide URL</td>
+<td>Bagian &quot;Ketik atau klik alamat: [URL DysCare]&quot; masih placeholder</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Penyimpanan Data (localStorage)</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Isi</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dyscareProgress</code></td>
+<td><code>{reading, spelling, writing, math}</code></td>
+<td>storage.js</td>
+</tr>
+<tr>
+<td><code>dyscareProfile</code></td>
+<td><code>{name}</code></td>
+<td>storage.js</td>
+</tr>
+<tr>
+<td><code>dyscareLevel</code></td>
+<td><code>1-6</code> (string)</td>
+<td>storage.js</td>
+</tr>
+<tr>
+<td><code>dyscareSessionHistory</code></td>
+<td>Array riwayat sesi</td>
+<td>storage.js</td>
+</tr>
+<tr>
+<td><code>dyscareAssessment</code></td>
+<td>Hasil skrining lengkap</td>
+<td>assessment.js</td>
+</tr>
+<tr>
+<td><code>dyscareLevelProgress</code></td>
+<td><code>{consecutivePass, history}</code></td>
+<td>storage.js</td>
+</tr>
+<tr>
+<td><code>dyscareAccessibility</code></td>
+<td><code>{fontActive, sizeLevel, contrastLevel, brightLevel}</code></td>
+<td>accessibility.js</td>
+</tr>
+<tr>
+<td><code>hide_info_*</code></td>
+<td>Flag popup &quot;jangan tampilkan lagi&quot;</td>
+<td>utils.js</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Kesimpulan</h2>
+<p>DysCare V3 adalah <strong>prototype yang sudah sangat matang</strong> untuk media pembelajaran membaca permulaan anak disleksia. Kodenya modular, kontennya terstruktur per level, dan pendekatan VAKT sudah terimplementasi di semua 3 modul aktif. Sistem adaptif 6-level dengan mastery criterion sudah berfungsi, dan integrasi AI Gemini memberikan variasi konten yang dinamis.</p>
+<p>Untuk <strong>keperluan penelitian/skripsi</strong>, aplikasi ini sudah cukup lengkap dan dapat divalidasi oleh ahli media maupun ahli materi.</p>
+
+
+</body>
+</html>
